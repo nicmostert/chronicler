@@ -3,22 +3,32 @@
 """Tests for `chronicler` package."""
 
 import pytest
+from chronicler.chronicler import decorator_logger
 
 
-from chronicler import chronicler
+@decorator_logger
+def len_of_string_example(str_arg):
+    return len(str_arg)
 
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+def test_decorator_logger_functionality(caplog):
+    """Test logger behaviour"""
+    str_example = "This is a string"
+    result = len_of_string_example(str_example)
+    print([dir(rec) for rec in caplog.records])
+    log_messages = [rec.message for rec in caplog.records]
+    assert log_messages == "whatsit"
+    assert result == len(str_example)
 
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
+def test_decorator_logger_wrapper():
+    """Test decorator function directly"""
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+    def mock_func():
+        print("Console Output to Intercept?")
+        return "Mock function called."
+    
+    decorated_mock_func = decorator_logger(mock_func) 
+
+    result = decorated_mock_func()
+    assert result == "Mock function called."

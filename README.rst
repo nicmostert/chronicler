@@ -2,23 +2,12 @@
 Chronicler
 ==========
 
-
 .. image:: https://img.shields.io/pypi/v/chronicler.svg
         :target: https://pypi.python.org/pypi/chronicler
-
-.. image:: https://img.shields.io/travis/nicmostert/chronicler.svg
-        :target: https://travis-ci.com/nicmostert/chronicler
 
 .. image:: https://readthedocs.org/projects/chronicler/badge/?version=latest
         :target: https://chronicler.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
-
-
-.. image:: https://pyup.io/repos/github/nicmostert/chronicler/shield.svg
-     :target: https://pyup.io/repos/github/nicmostert/chronicler/
-     :alt: Updates
-
-
 
 Audit trail generator for data processing scripts.
 
@@ -27,13 +16,85 @@ Audit trail generator for data processing scripts.
 * Documentation: https://chronicler.readthedocs.io.
 
 
-Features
---------
+==================
+Feature Roadmap
+==================
 
-* TODO
+This roadmap outlines the planned features and milestones for the development of our deterministic and reproducible process auditing system.
 
+Milestone 1: Audit Logging Framework
+-------------------------------------
+- Develop a custom audit logging framework or class.
+- Capture function names, input parameters, return values, data types, and timestamps.
+- Implement basic logging mechanisms for integration.
+
+Milestone 2: Standardized Logging Format
+-----------------------------------------
+- Define a standardized logging format for comprehensive auditing.
+- Ensure consistency and machine-readability of the logging format.
+
+Milestone 3: Serialization and Deserialization
+----------------------------------------------
+- Implement serialization and deserialization mechanisms.
+- Store and retrieve complex data structures and objects.
+- Test serialization for data integrity.
+
+Milestone 4: Versioning and Dependency Tracking
+-----------------------------------------------
+- Capture and log codebase version (Git commit hash) and dependencies.
+- Ensure accurate logging of version and dependency information.
+
+Milestone 5: Integration Testing
+--------------------------------
+- Create integration tests using the audit logging framework.
+- Log information during the execution of key processes.
+- Begin development of process recreation capability.
+
+Milestone 6: Reproduction Tool (Partial)
+----------------------------------------
+- Develop a tool or script to read and reproduce processes from the audit trail.
+- Focus on recreating the environment and loading serialized data.
+
+Milestone 7: Documentation (Partial)
+--------------------------------------
+- Create initial documentation.
+- Explain how to use the audit logging framework and the audit trail format.
+- Document basic project functionalities.
+
+Milestone 8: Error Handling
+---------------------------
+- Implement robust error handling for auditing and reproduction code.
+- Gracefully handle potential issues.
+- Provide informative and actionable error messages.
+
+Milestone 9: MVP Testing
+-------------------------
+- Conduct testing of the MVP.
+- Reproduce processes from the audit trail and verify correctness.
+- Gather feedback from initial users within the organization.
+
+Milestone 10: MVP Deployment
+------------------------------
+- Deploy the MVP within the organization.
+- Make it available to relevant team members.
+- Encourage usage and collect user feedback.
+
+Milestone 11: Feedback and Iteration
+--------------------------------------
+- Gather feedback from MVP users.
+- Identify shortcomings, usability issues, or missing features.
+- Prioritize and plan improvements based on user feedback.
+
+Milestone 12: Scaling and Extending
+------------------------------------
+- Explore scaling the solution to cover more processes.
+- Add additional features and capabilities to enhance usability.
+
+Please note that milestones may overlap, and the order can be adjusted based on project-specific needs. We aim to remain flexible and responsive to feedback during development.
+
+=======
 Credits
--------
+=======
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
