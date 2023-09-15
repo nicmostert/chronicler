@@ -27,12 +27,11 @@ def decorator_logger(func):
         function_module = func.__module__
         function_dir = dir(func)
         function_doc = func.__doc__
-        function_eq = func.__eq__
-        function_format = func.__format__
         auditor.log(PROCESS, function_name)
         auditor.log(PROCESS, function_class)
         auditor.log(PROCESS, function_module)
         auditor.log(PROCESS, function_dir)
         auditor.log(PROCESS, function_doc)
         return result
+
     return wrapper

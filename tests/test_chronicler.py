@@ -27,8 +27,8 @@ def test_decorator_logger_wrapper():
     def mock_func():
         print("Console Output to Intercept?")
         return "Mock function called."
-    
-    decorated_mock_func = decorator_logger(mock_func) 
+
+    decorated_mock_func = decorator_logger(mock_func)
 
     result = decorated_mock_func()
     assert result == "Mock function called."
