@@ -1,1 +1,1 @@
-"""Unit test package for chronicler."""
+"""Unit test package for annalist."""

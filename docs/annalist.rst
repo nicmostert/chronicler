@@ -1,13 +1,13 @@
-chronicler package
-==================
+annalist package
+================
 
 Submodules
 ----------
 
-chronicler.chronicler module
-----------------------------
+annalist.annalist module
+------------------------
 
-.. automodule:: chronicler.chronicler
+.. automodule:: annalist.annalist
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ chronicler.chronicler module
 Module contents
 ---------------
 
-.. automodule:: chronicler
+.. automodule:: annalist
    :members:
    :undoc-members:
    :show-inheritance:

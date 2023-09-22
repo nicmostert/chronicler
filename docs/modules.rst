@@ -1,7 +1,7 @@
-chronicler
-==========
+annalist
+========
 
 .. toctree::
    :maxdepth: 4
 
-   chronicler
+   annalist

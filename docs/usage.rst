@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use Chronicler in a project::
+To use Annalist in a project::
 
-    import chronicler
+    import annalist

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-"""Tests for `chronicler` package."""
+"""Tests for `annalist` package."""
 
 import pytest
-from chronicler.chronicler import decorator_logger
+from annalist.annalist import decorator_logger
 
 
 @decorator_logger

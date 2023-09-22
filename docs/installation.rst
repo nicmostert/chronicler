@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install Chronicler, run this command in your terminal:
+To install Annalist, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install chronicler
+    $ pip install annalist
 
-This is the preferred method to install Chronicler, as it will always install the most recent stable release.
+This is the preferred method to install Annalist, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,19 +26,19 @@ you through the process.
 From sources
 ------------
 
-The sources for Chronicler can be downloaded from the `Github repo`_.
+The sources for Annalist can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/nicmostert/chronicler
+    $ git clone git://github.com/nicmostert/annalist
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/nicmostert/chronicler/tarball/master
+    $ curl -OJL https://github.com/nicmostert/annalist/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/nicmostert/chronicler
-.. _tarball: https://github.com/nicmostert/chronicler/tarball/master
+.. _Github repo: https://github.com/nicmostert/annalist
+.. _tarball: https://github.com/nicmostert/annalist/tarball/master

@@ -1,4 +1,4 @@
-Welcome to Chronicler's documentation!
+Welcome to Annalist's documentation!
 ======================================
 
 .. toctree::

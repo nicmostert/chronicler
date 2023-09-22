@@ -1,19 +1,19 @@
 ==========
-Chronicler
+Annalist
 ==========
 
-.. image:: https://img.shields.io/pypi/v/chronicler.svg
-        :target: https://pypi.python.org/pypi/chronicler
+.. image:: https://img.shields.io/pypi/v/annalist.svg
+        :target: https://pypi.python.org/pypi/annalist
 
-.. image:: https://readthedocs.org/projects/chronicler/badge/?version=latest
-        :target: https://chronicler.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
+        :target: https://annalist.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 Audit trail generator for data processing scripts.
 
 
 * Free software: GNU General Public License v3
-* Documentation: https://chronicler.readthedocs.io.
+* Documentation: https://annalist.readthedocs.io.
 
 
 ==================
