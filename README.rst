@@ -9,6 +9,10 @@ Annalist
         :target: https://annalist.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
+.. image:: https://results.pre-commit.ci/badge/github/nicmostert/annalist/main.svg
+   :target: https://results.pre-commit.ci/latest/github/nicmostert/annalist/main
+   :alt: pre-commit.ci status
+
 Audit trail generator for data processing scripts.
 
 
