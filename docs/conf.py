@@ -105,7 +105,7 @@ htmlhelp_basename = "annalistdoc"
 
 # -- Options for LaTeX output ------------------------------------------
 
-latex_elements: dict[str, str] = {
+latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
