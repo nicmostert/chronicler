@@ -13,7 +13,9 @@ logging.addLevelName(PUT_DATA, "PUT_DATA")
 
 auditor = logging.getLogger("auditor")
 handler = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 handler.setFormatter(formatter)
 auditor.addHandler(handler)
 auditor.setLevel(GET_DATA)

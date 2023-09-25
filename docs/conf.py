@@ -12,17 +12,18 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import os
+import sys
+
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 #
-import os
-import sys
+import annalist
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import annalist
 
 # -- General configuration ---------------------------------------------
 
@@ -106,7 +107,7 @@ htmlhelp_basename = "annalistdoc"
 
 # -- Options for LaTeX output ------------------------------------------
 
-latex_elements = {
+latex_elements: dict[str, str] = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
@@ -125,7 +126,13 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "annalist.tex", "Annalist Documentation", "Nic Mostert", "manual"),
+    (
+        master_doc,
+        "annalist.tex",
+        "Annalist Documentation",
+        "Nic Mostert",
+        "manual",
+    ),
 ]
 
 

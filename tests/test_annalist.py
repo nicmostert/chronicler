@@ -2,7 +2,6 @@
 
 """Tests for `annalist` package."""
 
-import pytest
 from annalist.annalist import decorator_logger
 
 
