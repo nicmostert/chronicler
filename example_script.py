@@ -1,4 +1,5 @@
 from annalist.annalist import decorator_logger
+import numpy
 
 
 @decorator_logger
