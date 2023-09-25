@@ -2,8 +2,8 @@
 Annalist
 ==========
 
-.. image:: https://img.shields.io/pypi/v/annalist.svg
-        :target: https://pypi.python.org/pypi/annalist
+.. image:: https://img.shields.io/pypi/v/data-annalist.svg
+        :target: https://pypi.python.org/pypi/data-annalist
 
 .. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
         :target: https://annalist.readthedocs.io/en/latest/?version=latest

@@ -33,7 +33,7 @@ setup(
     long_description=readme + "\n\n" + history,
     include_package_data=True,
     keywords="annalist",
-    name="annalist",
+    name="data-annalist",
     packages=find_packages(include=["annalist", "annalist.*"]),
     test_suite="tests",
     tests_require=test_requirements,
