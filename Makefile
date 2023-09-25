@@ -87,3 +87,6 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+pre-commit: ## run pre-commit locally as it would run on pre-commit.ci
+	pre-commit run --all-files
