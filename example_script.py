@@ -1,7 +1,9 @@
-from annalist.annalist import decorator_logger
+from annalist.annalist import FunctionLogger
+
+logger = FunctionLogger("Audit", "Nic Baby")
 
 
-@decorator_logger
+@logger.annalize
 def test_function(arg):
     """
     Docstring

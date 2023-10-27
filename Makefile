@@ -53,7 +53,7 @@ clean-lint:
 lint/flake8: ## check style with flake8
 	flake8 annalist tests
 lint/black: ## check style with black
-	black --check annalist tests
+	black -l 80 --check annalist tests
 
 lint: lint/flake8 lint/black## check style
 
