@@ -3,42 +3,41 @@
 """Tests for `annalist` package."""
 
 from annalist.annalist import Annalist
+from tests.example_class import Craig
 
 ann = Annalist()
 ann.configure("Test Logger", "Testificate")
 
 correct_output = """
-============ Called function len_of_string_example ============
+============ Called function __init__ ============
 Analyst: Testificate
-Function name: len_of_string_example
-Function docstring: None
-Parameters: [{'name': 'str_arg', 'default': None, 'annotation': \
-None, 'kind': 'keyword', 'value': 'This is a string'}]
+Function name: __init__
+Function docstring: Initialize a Craig.
+Parameters: [{'name': 'self', 'default': None, 'annotation': None, 'kind': \
+'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, \
+{'name': 'surname', 'default': None, 'annotation': <class 'str'>, 'kind': \
+'keyword', 'value': 'Beaven'}, {'name': 'height', 'default': None, \
+'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, \
+{'name': 'shoesize', 'default': None, 'annotation': <class 'int'>, \
+'kind': 'keyword', 'value': 9}]
 Return Annotation: None
-Return Type: <class 'int'>
-Return Value: 16
+Return Type: <class 'NoneType'>
+Return Value: None
 ========================================"""
 
 
-@ann.annalize
-def len_of_string_example(str_arg):
-    """Calculate length of string."""
-    return len(str_arg)
-
-
-def test_decorator_logger_functionality(caplog):
+def test_init_logging(caplog):
     """Test logger behaviour."""
-    str_example = "This is a string"
-    result = len_of_string_example(str_example)
+    cb = Craig("Beaven", 5.5, 9)
+    print(cb)
     print([dir(rec) for rec in caplog.records])
     print(caplog.records)
     log_messages = [rec.message for rec in caplog.records]
     print(log_messages)
     assert log_messages[0] == correct_output
-    assert result == len(str_example)
 
 
-def test_decorator_logger_wrapper():
+def test_annalizer_wrapper():
     """Test decorator function directly."""
 
     def mock_func():
