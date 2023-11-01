@@ -5,10 +5,38 @@ import inspect
 import logging
 
 
-class FunctionLogger:
-    def __init__(self, logger_name, analyst_name):
+class Singleton(type):
+    """Singleton Metaclass.
+
+    Ensures that only one instance of the inheriting class is created.
+    """
+
+    def __init__(self, name, bases, mmbs):
+        """Enforce singleton upon new object creation."""
+        super().__init__(name, bases, mmbs)
+        self._instance = super().__call__()
+
+    def __call__(self, *args, **kw):
+        """Retrieve singleton object."""
+        return self._instance
+
+
+class Annalist(metaclass=Singleton):
+    """Annalist Class."""
+
+    _configured = False
+
+    def __init__(self):
+        """Not a true init I guess."""
+
+    def configure(
+        self,
+        logger_name: str | None = None,
+        analyst_name: str | None = None,
+    ):
+        """Configure the Annalist."""
         self.logger = logging.getLogger(logger_name)
-        self.analyst_name = analyst_name
+        self._analyst_name = analyst_name
         self.handler = logging.StreamHandler()  # Log to console
         formatter = logging.Formatter(
             "%(asctime)s | %(levelname)s | %(message)s",
@@ -16,9 +44,35 @@ class FunctionLogger:
         self.handler.setFormatter(formatter)
         self.logger.addHandler(self.handler)
         self.logger.setLevel(logging.DEBUG)
-        self.logger.log(logging.INFO, "Logger Initialized")
+        self.logger.log(
+            logging.INFO,
+            f"Configured as '{logger_name}' by analyst '{analyst_name}'.",
+        )
+        self._configured = True
+
+    @property
+    def analyst_name(self):
+        """The analyst_name property."""
+        if not self._configured:
+            raise ValueError(
+                "Annalist not configured. Configure object after retrieval."
+            )
+        return self._analyst_name
+
+    @analyst_name.setter
+    def analyst_name(self, value):
+        if not self._configured:
+            raise ValueError(
+                "Annalist not configured. Configure object after retrieval."
+            )
+        self._analyst_name = value
 
     def log_call(self, level, func, ret_val, *args, **kwargs):
+        """Log function call."""
+        if not self._configured:
+            raise ValueError(
+                "Annalist not configured. Configure object after retrieval."
+            )
         signature = inspect.signature(func)
         function_name = func.__name__
         function_doc = func.__doc__
@@ -81,6 +135,8 @@ class FunctionLogger:
         )
 
     def annalize(self, _func=None, *, operation_type="PROCESS"):
+        """I'm really not sure how this is going to work."""
+
         def decorator_logger(func):
             # This line reminds func that it is func and not the decorator
             @functools.wraps(func)
@@ -96,18 +152,3 @@ class FunctionLogger:
             return decorator_logger
         else:
             return decorator_logger(_func)
-
-
-if __name__ == "__main__":
-    # Initialize the custom logger
-    logger = FunctionLogger("audit", "Nic Baby")
-
-    @logger.annalize(operation_type="PROCESS")
-    def example_function(a, b=1):
-        """This is an example function."""
-        result = a + b
-        return result
-
-    # Call the example function
-    result = example_function(10, b=20)
-    print(result)
