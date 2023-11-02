@@ -19,6 +19,65 @@ Audit trail generator for data processing scripts.
 * Free software: GNU General Public License v3
 * Documentation: https://annalist.readthedocs.io.
 
+==================
+Usage
+==================
+
+Create an ``Annalist`` object at the base of the module you'd like to audit. use the ``@Annalist.annalize`` decorator on any function you would like to annalize
+
+::
+
+    from annalist.annalist import Annalist
+
+    ann = Annalist()
+
+    @ann.annalize
+    def example_function():
+        ...
+
+Annalise also works on most class functions, with some exceptions.
+
+::
+
+    class ExampleClass():
+
+        # Initializers can be annalized just fine
+        @ann.annalize
+        __init__(self, arg1, arg2):
+            self.arg1 = arg1
+            self._arg2 = arg2
+            ...
+
+        # DO NOT put an annalizer on a property definition.
+        # The annalizer calls the property itself, creating infinite recursion.
+        @property
+        def arg2(self):
+            return self._arg2
+
+        # Putting an annalizer on a setter is fine though.
+        # Just make sure you put it after the setter decorator.
+        @arg2.setter
+        @ann.annalize
+        def arg2(self, value):
+            self._arg2 = value
+
+        # DO NOT put it on the __repr__ either.
+        # Same as before, this creates infinite recursion.
+        def __repr__(self):
+            return f"{str(arg1)}: {str(arg2)}"
+
+
+In the main script, the Annalist object must be called again. This will point to the singleton object initialized in the dependency. The annalist must be configured before usage.
+
+>>> ann = Annalist()
+>>> ann.configure(logger_name="Example Logger", analyst_name="Speve")
+
+Now the annalized code can be run like normal, and will be audited.
+
+>>> example_function()
+2023/11/2 09:42:13 | INFO | example_function called by Speve as part of Example Logger session
+
+
 
 ==================
 Feature Roadmap
@@ -28,8 +87,6 @@ This roadmap outlines the planned features and milestones for the development of
 
 Milestone 1: Audit Logging Framework
 ------------------------------------
-
-*COMPLETE*
 
 - Develop a custom audit logging framework or class.
 - Capture function names, input parameters, return values, data types, and timestamps.

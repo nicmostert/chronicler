@@ -12,3 +12,9 @@ History
 
 * Basic logging functionality.
 * Only supports logging to console.
+
+0.1.2 (2023-11-2)
+------------------
+
+* Implemented Annalist as a Singleton.
+* Usage now includes configuration step.
