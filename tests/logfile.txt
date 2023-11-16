@@ -1,0 +1,253 @@
+
+============ Called function __init__ ============
+Analyst: Testificate
+Function name: __init__
+Function docstring: Initialize a Craig.
+Parameters: [{'name': 'self', 'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, {'name': 'surname', 'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, {'name': 'height', 'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, {'name': 'shoesize', 'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, {'name': 'injured', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, {'name': 'bearded', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}]
+Return Annotation: None
+Return Type: <class 'NoneType'>
+Return Value: None
+========================================
+
+============ Called function mock_func ============
+Analyst: Testificate
+Function name: mock_func
+Function docstring: None
+Parameters: []
+Return Annotation: None
+Return Type: <class 'str'>
+Return Value: Mock function called.
+========================================
+
+============ Called function __init__ ============
+Analyst: Testificate
+Function name: __init__
+Function docstring: Initialize a Craig.
+Parameters: [{'name': 'self', 'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, {'name': 'surname', 'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, {'name': 'height', 'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, {'name': 'shoesize', 'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, {'name': 'injured', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, {'name': 'bearded', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}]
+Return Annotation: None
+Return Type: <class 'NoneType'>
+Return Value: None
+========================================
+
+============ Called function mock_func ============
+Analyst: Testificate
+Function name: mock_func
+Function docstring: None
+Parameters: []
+Return Annotation: None
+Return Type: <class 'str'>
+Return Value: Mock function called.
+========================================
+
+============ Called function __init__ ============
+Analyst: Testificate
+Function name: __init__
+Function docstring: Initialize a Craig.
+Parameters: [{'name': 'self', 'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, {'name': 'surname', 'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, {'name': 'height', 'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, {'name': 'shoesize', 'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, {'name': 'injured', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, {'name': 'bearded', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}]
+Return Annotation: None
+Return Type: <class 'NoneType'>
+Return Value: None
+========================================
+
+============ Called function mock_func ============
+Analyst: Testificate
+Function name: mock_func
+Function docstring: None
+Parameters: []
+Return Annotation: None
+Return Type: <class 'str'>
+Return Value: Mock function called.
+========================================
+
+============ Called function __init__ ============
+Analyst: Testificate
+Function name: __init__
+Function docstring: Initialize a Craig.
+Parameters: [{'name': 'self', 'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, {'name': 'surname', 'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, {'name': 'height', 'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, {'name': 'shoesize', 'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, {'name': 'injured', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, {'name': 'bearded', 'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}]
+Return Annotation: None
+Return Type: <class 'NoneType'>
+Return Value: None
+========================================
+
+============ Called function mock_func ============
+Analyst: Testificate
+Function name: mock_func
+Function docstring: None
+Parameters: []
+Return Annotation: None
+Return Type: <class 'str'>
+Return Value: Mock function called.
+========================================
+2023-11-16 15:08:45,996, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:08:46,014, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:09:04,160, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:09:04,161, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:09:10,292, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:09:10,294, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:10:35,546, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:10:35,547, Nic baby, annalist.py.annalist.log_call:206, None, None, whatsit
+2023-11-16 15:13:03,373, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:13:03,375, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:13:36,765, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:13:36,767, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:32,245, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:32,247, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:39,345, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:39,347, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:41,676, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:14:41,677, Nic baby, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:16:22,977, Testificate, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:16:22,979, Testificate, annalist.py.annalist.log_call:207, None, None, whatsit
+
+2023-11-16 15:21:21,211, Testificate, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:21:21,213, Testificate, annalist.py.annalist.log_call:207, None, None, whatsit
+2023-11-16 15:23:04,532, Testificate, __init__, annalist.py | whatsit
+2023-11-16 15:23:04,533, Testificate, mock_func, annalist.py | whatsit
+2023-11-16 15:24:39,852, Testificate, __init__, annalist.py | whatsit
+2023-11-16 15:24:39,869, Testificate, mock_func, annalist.py | whatsit
+2023-11-16 15:25:50,397, Testificate, __init__, annalist.py | whatsit
+2023-11-16 15:25:50,399, Testificate, mock_func, annalist.py | whatsit
+2023-11-16 15:25:55,052, Testificate, __init__, annalist.py | whatsit
+2023-11-16 15:25:55,072, Testificate, mock_func, annalist.py | whatsit
+2023-11-16 15:30:25,867, None, None, annalist.py | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 15:30:25,870, None, None, annalist.py | whatsit
+2023-11-16 15:30:25,887, None, None, annalist.py | whatsit
+2023-11-16 16:19:47,404, None, None None, None, None | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:19:47,407, None, None None, None, None | whatsit
+2023-11-16 16:19:47,425, None, None None, None, None | whatsit
+2023-11-16 16:21:24,165, None, None None, None, None | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:21:24,169, __init__, Testificate Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}} | whatsit
+2023-11-16 16:21:24,189, mock_func, Testificate None, None, {} | whatsit
+2023-11-16 16:23:57,650, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:28:05,914, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:45:41,516, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:47:35,660, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:47:35,680, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:47:35,680, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:51:48,087, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:51:48,109, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:51:48,109, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:53:57,797, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:53:57,815, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:53:57,816, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:54:58,896, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:54:58,896, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 16:54:58,913, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:54:58,913, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:56:35,713, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:56:35,733, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:56:35,734, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:57:03,181, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:57:03,184, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 16:57:03,205, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:57:03,205, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:57:24,864, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:57:24,865, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 16:57:24,889, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:57:24,890, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 16:58:05,404, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:58:05,404, None, None, None, None, None, | whatsit
+2023-11-16 16:58:05,424, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 16:58:05,424, None, None, None, None, None, | whatsit
+2023-11-16 17:02:11,126, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:02:11,127, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:02:11,150, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:02:11,150, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:03:02,891, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:02,891, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:03:02,929, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:02,929, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:03:09,576, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:09,576, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:03:09,611, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:09,612, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:03:58,970, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:58,970, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:03:58,990, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:03:58,990, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:11:31,710, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:11:31,712, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:11:31,730, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:11:31,730, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:15:44,789, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:15:44,790, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:15:44,808, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:15:44,808, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:18:47,035, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:18:47,036, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:18:47,052, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:18:47,052, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:19:17,126, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:19:17,127, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:19:17,143, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:19:17,144, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:20:25,339, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:20:25,340, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:20:25,357, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:20:25,357, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:22:14,979, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:22:14,980, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:22:14,998, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:22:14,999, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:22:15,003, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:22:15,004, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:23:10,388, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:10,388, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:23:10,409, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:10,410, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:23:10,412, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:10,412, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:23:59,641, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:59,642, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:23:59,662, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:59,662, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:23:59,663, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:23:59,664, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:23:59,665, mock_func, Testificate, None, None, {}, | whatsit
+2023-11-16 17:25:11,303, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:25:11,303, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:25:14,098, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:25:14,098, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:26:19,048, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:26:19,048, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:26:59,291, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:26:59,291, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:26:59,291, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 5.5 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:26:59,292, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 5.5 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:27:53,432, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:27:53,433, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:27:53,433, add_feet, Testificate, None, None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:27:53,433, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:27:53,433, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:28:44,304, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:28:44,304, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:28:44,305, add_feet, Testificate, None, None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:28:44,305, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 13.0 ft tall and wears size 9 shoes.}, 'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:28:44,305, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:28:44,305, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:28:56,582, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:28:56,583, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:28:56,583, add_feet, Testificate, None, None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:28:56,584, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 13.0 ft tall and wears size 9 shoes.}, 'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:28:56,584, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:28:56,584, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:29:56,159, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:29:56,159, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:29:56,160, add_feet, Testificate, None, None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:29:56,160, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:29:56,160, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:38:15,179, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:38:15,180, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:38:15,180, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:38:15,180, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:38:15,180, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:39:14,648, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:39:14,649, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:39:14,649, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:39:14,650, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:39:14,650, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit
+2023-11-16 17:39:54,812, None, None, None, None, None, | logging to 'tests/logfile.txt' by analyst 'Testificate'.
+2023-11-16 17:39:54,812, __init__, Testificate, Initialize a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Beaven is 5.5 ft tall and wears size 9 shoes.}, 'surname': {'default': None, 'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Beaven'}, 'height': {'default': None, 'annotation': <class 'float'>, 'kind': 'keyword', 'value': 5.5}, 'shoesize': {'default': None, 'annotation': <class 'int'>, 'kind': 'keyword', 'value': 9}, 'injured': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}, 'bearded': {'default': None, 'annotation': <class 'bool'>, 'kind': 'keyword', 'value': True}}, | whatsit
+2023-11-16 17:39:54,813, grow_craig, Testificate, Grow your craig by specified amount of feet., None, {'feet': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 2}}, | whatsit
+2023-11-16 17:39:54,815, surname, Testificate, Set the surname of a Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 9 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 'Coulomb'}}, | whatsit
+2023-11-16 17:39:54,815, shoesize, Testificate, Set the shoesize of your Craig., None, {'self': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': Craig Coulomb is 13.0 ft tall and wears size 11 shoes.}, 'value': {'default': None, 'annotation': None, 'kind': 'keyword', 'value': 11}}, | whatsit

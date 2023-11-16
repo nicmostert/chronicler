@@ -1,13 +1,12 @@
 """Just testing some stuff here."""
 # from annalist.annalist import FunctionLogger
-from example_class import Craig
-
 from annalist.annalist import Annalist
+from tests.example_class import Craig
 
 if __name__ == "__main__":
     ann = Annalist()
     ann.configure(
-        logger_name="Let's make some Craigs",
+        filename="tests/logfile.txt",
         analyst_name="Nic Baby, Every Time",
     )
     ann2 = Annalist()

@@ -7,6 +7,9 @@ Annalist
 
 .. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
         :target: https://annalist.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
+        :target: https://annalist.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
         :alt: Documentation Status
 
 .. image:: https://results.pre-commit.ci/badge/github/nicmostert/annalist/main.svg
@@ -76,6 +79,34 @@ Now the annalized code can be run like normal, and will be audited.
 
 >>> example_function()
 2023/11/2 09:42:13 | INFO | example_function called by Speve as part of Example Logger session
+
+Custom Formatters
+-------------------
+
+Annalist is built on the standard python *logging* library. Custom formatters can be specified in the same syntax as is documented in the `logging docs`_. The available fields can be found `here`_.
+
+.. _logging docs: https://docs.python.org/3/howto/logging.html#formatters
+.. _here: https://docs.python.org/3/library/logging.html#logrecord-attributes
+
+Annalist supports two formatters. The *File formatters* formats the output to the logfile, and *Stream formatter* formats the console output.
+
+::
+
+    annalizer.set_file_formatter(
+        "%(asctime)s, %(user)s "
+        "| %(filename)s.%(module)s.%(funcName)s:%(lineno)d "
+        "| %(message)s",
+    )
+
+    annalizer.set_stream_formatter(
+        "%(asctime)s, %(funcName)s "
+    )
+
+
+In this example, the console output might be
+
+>>> example_function()
+2023/11/2 09:42:13, example_function
 
 
 

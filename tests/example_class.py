@@ -13,11 +13,19 @@ class Craig:
         surname: str,
         height: float,
         shoesize: int,
+        injured: bool,
+        bearded: bool,
     ):
         """Initialize a Craig."""
         self._surname = surname
         self.height = height
         self._shoesize = shoesize
+        self.injured = injured
+        self.bearded = bearded
+        self.extra_info = {
+            "injured": self.injured,
+            "bearded": self.bearded,
+        }
 
     @property
     def surname(self):
@@ -41,10 +49,15 @@ class Craig:
         """Set the shoesize of your Craig."""
         self._shoesize = value
 
-    @annalizer.annalize
     def grow_craig(self, feet):
-        """Grow your craig by specified amount of feet."""
-        self.height = self.height + feet
+        """Just a wrapper for the inner grow_craig."""
+
+        @annalizer.annalize(extra_info=self.extra_info)
+        def grow_craig(feet):
+            """Grow your craig by specified amount of feet."""
+            self.height += self.height + feet
+
+        grow_craig(feet)
 
     def __repr__(self):
         """Represent your Craig as a string."""
