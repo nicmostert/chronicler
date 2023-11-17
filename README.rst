@@ -28,11 +28,12 @@ Usage
 
 Create an ``Annalist`` object at the base of the module you'd like to audit. use the ``@Annalist.annalize`` decorator on any function you would like to annalize
 
-::
+.. code-block:: python
 
     from annalist.annalist import Annalist
 
     ann = Annalist()
+    ann.configure()
 
     @ann.annalize
     def example_function():
@@ -40,7 +41,7 @@ Create an ``Annalist`` object at the base of the module you'd like to audit. use
 
 Annalise also works on most class functions, with some exceptions.
 
-::
+.. code-block:: python
 
     class ExampleClass():
 
@@ -80,26 +81,25 @@ Now the annalized code can be run like normal, and will be audited.
 >>> example_function()
 2023/11/2 09:42:13 | INFO | example_function called by Speve as part of Example Logger session
 
-Custom Formatters
+
+Formatters
 -------------------
 
-Annalist is built on the standard python *logging* library. Custom formatters can be specified in the same syntax as is documented in the `logging docs`_. The available fields can be found `here`_.
+Annalist is built on the standard python *logging* library. Formatters can be specified in the same syntax as is documented in the `logging docs`_. The available fields can be found in :ref:`Fields`.
 
 .. _logging docs: https://docs.python.org/3/howto/logging.html#formatters
-.. _here: https://docs.python.org/3/library/logging.html#logrecord-attributes
 
 Annalist supports two formatters. The *File formatters* formats the output to the logfile, and *Stream formatter* formats the console output.
 
-::
+.. code-block:: python
 
     annalizer.set_file_formatter(
-        "%(asctime)s, %(user)s "
-        "| %(filename)s.%(module)s.%(funcName)s:%(lineno)d "
+        "%(asctime)s, %(analyst_name)s, example_funtion "
         "| %(message)s",
     )
 
     annalizer.set_stream_formatter(
-        "%(asctime)s, %(funcName)s "
+        "%(asctime)s, %(function_name)s "
     )
 
 
@@ -108,6 +108,141 @@ In this example, the console output might be
 >>> example_function()
 2023/11/2 09:42:13, example_function
 
+whereas the contents of the logfile might be:
+
+::
+
+    2023/11/2 09:42:13, example_function, Speve | This is an example.
+
+Fields
+___________
+
+Annalist collects information about a decorated function and makes those available as fields. Additionally, the fields from the logging library are also available, although they are generally less useful. Below are all the useful features that are available. See all the logging fields `here`_.The reason for their limited usefulness are that most of the code references made there point to the annalist library, and not the decorated code.
+
+All the fields that we consider useful are listed below:
+
+.. _here: https://docs.python.org/3/library/logging.html#logrecord-attributes
+
++--------------------+----------------------------------------+---------------------+
+| Field              | Description                            | Source              |
++====================+========================================+=====================+
+| ``analyst_name``   | Name of the analyst writing the script | User configured     |
+| ``function_name``  | Function Name                          | Function Inspection |
+| ``function_doc``   | Function Docstring                     | Function Inspection |
+| ``ret_val``        | Return value                           | Function Inspection |
+| ``ret_val_type``   | Return value type                      | Function Inspection |
+| ``ret_annotation`` | Annotation of return value             | Function Inspection |
+| ``params``         | Input parameters                       | Function Inspection |
+| ``asctime``        | Time of function call                  | Logging Library     |
+| ``levelname``      | Logging level name                     | Logging Library     |
+| ``levelno``        | Logging level number                   | Logging Library     |
+| ``message``\*      | Needs to be passed as extra param      | Logging Library     |
+| ``name``           | Logger name                            | Logging Library     |
++--------------------+----------------------------------------+---------------------+
+
+The ``message`` field is an optional parameter that can be passed directly to the decorator. This is the simplest way to add more information to a function log.
+
+.. code-block:: python
+
+    @ann.annalize(message="this is a message")
+    def example_function():
+        ...
+
+
+You can also specify the level of the logger in the same way
+
+.. code-block:: python
+
+    @ann.annalize(level="DEBUG")
+    def example_function():
+        ...
+
+
+Custom Fields
+--------------
+
+Annalist accepts any number of arbitrary fields in the formatter. If these fields are not one of the fields available by default, the fields is dynamically added and processed. However, this field must then be passed to the decorator in the ``extra_info`` argument.
+
+For example, you might set the formatter as follows. Note that the fields ``site`` and ``hts_file`` are custom, and are not available by default.
+
+
+.. code-block:: python
+
+    annalizer.set_file_formatter(
+        "%(asctime)s, %(analyst_name)s, %(site)s, %(hts_file)s "
+        "| %(message)s",
+    )
+
+Then, passing those parameters into the example function looks like this:
+
+.. code-block:: python
+
+    hts_file = "file.hts"
+
+    @ann.annalize(
+        level="INFO",
+        message="This decorator passes extra parameters",
+        extra_info={
+            "site_name": "Site one",
+            "hts_file": hts_file,
+        }
+    )
+    def example_function():
+        ...
+
+
+If the custom fields are not included in a function decorator, they will simply default to ``None``.
+
+When using Annalist in a class method, you might want to log class properties. Unfortunately, the following syntax will not work, since the decorator has no knowledge of the class instance (self).
+
+
+.. code-block:: python
+
+    class ExampleClass:
+        ...
+
+        @ann.annalize(
+            level="INFO",
+            message="This decorator passes extra parameters",
+            extra_info={
+                "site_name": self.site_name, # THIS DOES NOT WORK!
+                "hts_file": self.hts_file, # THIS DOES NOT WORK!
+            }
+        )
+        def example_method(self):
+            ...
+
+
+In this case, you would need to wrap your method as a function in a method that passes the instance context to the decorator.
+
+
+.. code-block:: python
+
+    class ExampleClass:
+        ...
+
+
+        def example_function(self):
+            @ann.annalize(
+                level="INFO",
+                message="This decorator passes extra parameters",
+                extra_info={
+                    "site_name": self.site_name, # THIS DOES NOT WORK!
+                    "hts_file": self.hts_file, # THIS DOES NOT WORK!
+                }
+            )
+            def example_function():
+                ...
+
+            example_function() # OR return example_function()
+
+Notice that I gave the same function name to the outer and inner functions. This seems to work consistently by my testing since the two functions are in different name-spaces. I'm not sure if this is good practice though. But it keeps the logs nice and clean and non-confusing.
+
+
+Levels
+--------
+
+Setting the
 
 
 ==================
@@ -122,6 +257,11 @@ Milestone 1: Audit Logging Framework
 - Develop a custom audit logging framework or class.
 - Capture function names, input parameters, return values, data types, and timestamps.
 - Implement basic logging mechanisms for integration.
+
+Milestone 1.5: Hilltop Auditing Parity
+---------------------------------------
+- Define custom fields and formatters
+- Manage logger levels correctly
 
 Milestone 2: Standardized Logging Format
 -----------------------------------------
