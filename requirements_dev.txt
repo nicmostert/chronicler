@@ -1,5 +1,4 @@
 alabaster==0.7.13
-annalist==0.1.0
 Babel==2.12.1
 black==23.9.1
 bump2version==1.0.1
@@ -13,7 +12,7 @@ click==8.1.7
 colorama==0.4.6
 coverage==7.3.1
 cryptography==41.0.4
--e git+https://github.com/nicmostert/annalist.git@949c46c4aed0952e95a74759f406e6e96b5add79#egg=data_annalist
+-e git+https://github.com/nicmostert/annalist.git@278ff115cc5b92d0082e305e1cfc05419f158f92#egg=data_annalist
 distlib==0.3.7
 docutils==0.20.1
 exceptiongroup==1.1.3

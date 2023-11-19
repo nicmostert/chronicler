@@ -25,7 +25,7 @@ Usage
 
 Create an ``Annalist`` object at the base of the module you'd like to audit. use the ``@Annalist.annalize`` decorator on any function you would like to annalize
 
-.. code-block:: python
+::
 
     from annalist.annalist import Annalist
 
@@ -38,7 +38,7 @@ Create an ``Annalist`` object at the base of the module you'd like to audit. use
 
 Annalise also works on most class functions, with some exceptions.
 
-.. code-block:: python
+::
 
     class ExampleClass():
 
@@ -82,13 +82,11 @@ Now the annalized code can be run like normal, and will be audited.
 Formatters
 -------------------
 
-Annalist is built on the standard python *logging* library. Formatters can be specified in the same syntax as is documented in the `logging docs`_. The available fields can be found in :ref:`Fields`.
-
-.. _logging docs: https://docs.python.org/3/howto/logging.html#formatters
+Annalist is built on the standard python *logging* library. Formatters can be specified in the same syntax as is documented in the `logging docs`. The available fields can be found in `Fields`.
 
 Annalist supports two formatters. The *File formatters* formats the output to the logfile, and *Stream formatter* formats the console output.
 
-.. code-block:: python
+::
 
     annalizer.set_file_formatter(
         "%(asctime)s, %(analyst_name)s, example_funtion "
@@ -139,7 +137,7 @@ All the fields that we consider useful are listed below:
 
 The ``message`` field is an optional parameter that can be passed directly to the decorator. This is the simplest way to add more information to a function log.
 
-.. code-block:: python
+::
 
     @ann.annalize(message="this is a message")
     def example_function():
@@ -148,7 +146,7 @@ The ``message`` field is an optional parameter that can be passed directly to th
 
 You can also specify the level of the logger in the same way
 
-.. code-block:: python
+::
 
     @ann.annalize(level="DEBUG")
     def example_function():
@@ -163,7 +161,7 @@ Annalist accepts any number of arbitrary fields in the formatter. If these field
 For example, you might set the formatter as follows. Note that the fields ``site`` and ``hts_file`` are custom, and are not available by default.
 
 
-.. code-block:: python
+::
 
     annalizer.set_file_formatter(
         "%(asctime)s, %(analyst_name)s, %(site)s, %(hts_file)s "
@@ -172,7 +170,7 @@ For example, you might set the formatter as follows. Note that the fields ``site
 
 Then, passing those parameters into the example function looks like this:
 
-.. code-block:: python
+::
 
     hts_file = "file.hts"
 
@@ -193,7 +191,7 @@ If the custom fields are not included in a function decorator, they will simply 
 When using Annalist in a class method, you might want to log class properties. Unfortunately, the following syntax will not work, since the decorator has no knowledge of the class instance (self).
 
 
-.. code-block:: python
+::
 
     class ExampleClass:
         ...
@@ -213,7 +211,7 @@ When using Annalist in a class method, you might want to log class properties. U
 In this case, you would need to wrap your method as a function in a method that passes the instance context to the decorator.
 
 
-.. code-block:: python
+::
 
     class ExampleClass:
         ...
@@ -241,7 +239,7 @@ Levels
 
 Annalist uses the levels as defined in the logging library. Upon configuration, the ``default level`` can be set, which is the level at which all logs are logged unless overridden. The default value for ``default level`` is "INFO".
 
-.. code-block:: python
+::
 
     ann.configure(
         analyst_name="Speve",
@@ -251,7 +249,7 @@ Annalist uses the levels as defined in the logging library. Upon configuration, 
 
 A annalized method can be logged at a raised or lowered level by specifying the logging level explicitely in the decorator:
 
-.. code-block:: python
+::
 
     @ann.annalize(level="DEBUG")
     def unimportant_function():
