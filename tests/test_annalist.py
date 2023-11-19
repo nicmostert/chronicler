@@ -217,7 +217,6 @@ def test_logging_levels(capsys):
         stream_format_str=format_str,
         level_filter="WARNING",
     )
-    print(ann.logger.level)
 
     cb = Craig(
         surname="Beaven",

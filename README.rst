@@ -227,8 +227,8 @@ In this case, you would need to wrap your method as a function in a method that 
                 level="INFO",
                 message="This decorator passes extra parameters",
                 extra_info={
-                    "site_name": self.site_name, # THIS DOES NOT WORK!
-                    "hts_file": self.hts_file, # THIS DOES NOT WORK!
+                    "site_name": self.site_name,
+                    "hts_file": self.hts_file,
                 }
             )
             def example_function():
@@ -242,8 +242,23 @@ Notice that I gave the same function name to the outer and inner functions. This
 Levels
 --------
 
-Setting the
+Annalist uses the levels as defined in the logging library. Upon configuration, the ``default level`` can be set, which is the level at which all logs are logged unless overridden. The default value for ``default level`` is "INFO".
 
+.. code-block:: python
+
+    ann.configure(
+        analyst_name="Speve",
+        stream_format_str=format_str,
+        level_filter="WARNING",
+    )
+
+A annalized method can be logged at a raised or lowered level by specifying the logging level explicitely in the decorator:
+
+.. code-block:: python
+
+    @ann.annalize(level="DEBUG")
+    def unimportant_function():
+        ...
 
 ==================
 Feature Roadmap
@@ -254,14 +269,14 @@ This roadmap outlines the planned features and milestones for the development of
 Milestone 1: Audit Logging Framework
 ------------------------------------
 
-- Develop a custom audit logging framework or class.
-- Capture function names, input parameters, return values, data types, and timestamps.
-- Implement basic logging mechanisms for integration.
+x Develop a custom audit logging framework or class.
+x Capture function names, input parameters, return values, data types, and timestamps.
+x Implement basic logging mechanisms for integration.
 
 Milestone 1.5: Hilltop Auditing Parity
 ---------------------------------------
-- Define custom fields and formatters
-- Manage logger levels correctly
+x Define custom fields and formatters
+x Manage logger levels correctly
 
 Milestone 2: Standardized Logging Format
 -----------------------------------------

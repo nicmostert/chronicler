@@ -18,3 +18,10 @@ History
 
 * Implemented Annalist as a Singleton.
 * Usage now includes configuration step.
+
+0.3.0 (2023-11-20)
+------------------
+
+* Now takes arbitrary input paramaters.
+* Able to support Hilltop audit trail parity.
+* User can control logging levels
