@@ -119,11 +119,6 @@ class Annalist(metaclass=Singleton):
 
         self.logger = FunctionLogger("auditor", all_attributes)
 
-        self.logger.log(
-            self.default_level,
-            f"logging to '{logfile}' by analyst '{analyst_name}'.",
-        )
-
         if self.logfile:
             self.logger.addHandler(self.file_handler)
         self.logger.addHandler(self.stream_handler)

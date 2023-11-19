@@ -50,14 +50,12 @@ def test_all_fields(capsys):
 
     ann = Annalist()
     ann.configure(
-        analyst_name="Test Two",
-        file_format_str=format_str,
+        analyst_name="test_all_fields",
         stream_format_str=format_str,
-        logfile="tests/logfile.txt",
     )
 
     field_values = json.loads(
-        '{"analyst_name": "Test Two",'
+        '{"analyst_name": "test_all_fields",'
         '"function_name": "return_greeting",'
         '"function_doc": "Return a friendly greeting.",'
         '"ret_val": "Hi Craig",'
@@ -89,6 +87,7 @@ def test_all_fields(capsys):
     return_greeting("Craig")
 
     captured = capsys.readouterr()
+    # print(captured.err.split("{", maxsplit=1)[1])
 
     json_str = "{" + captured.err.split("{", maxsplit=1)[1]
     captured_fields = json.loads(json_str)
@@ -99,28 +98,38 @@ def test_all_fields(capsys):
 
 
 def test_init_logging(capsys):
-    """Test logging of a constructor"""
+    """Test logging of a constructor."""
     ann = Annalist()
-    ann.configure()
 
-    cb = Craig(
-        surname="Beaven",
-        height=5.5,
-        shoesize=9,
-        injured=True,
-        bearded=True,
-    )
+    format_str = "%(analyst_name)s | %(function_name)s | %(name)s"
 
-    assert cb.surname == "Beaven"
-
-
-def test_extra_info_logging(caplog):
-    """Test logger behaviour."""
-    ann = Annalist()
     ann.configure(
-        analyst_name="Testificate",
-        # level_filter="WARNING",
-        # default_level="DEBUG"
+        analyst_name="test_init_logging",
+        stream_format_str=format_str,
+    )
+
+    _ = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    captured = capsys.readouterr()
+
+    assert captured.err == "test_init_logging | __init__ | auditor\n"
+
+
+def test_setter_logging(capsys):
+    """Test logging of a property setter."""
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(name)s"
+
+    ann.configure(
+        analyst_name="test_setter_logging",
+        stream_format_str=format_str,
     )
 
     cb = Craig(
@@ -130,8 +139,102 @@ def test_extra_info_logging(caplog):
         injured=True,
         bearded=True,
     )
-    cb.grow_craig(2)
+
+    # Invoking the property setter here.
     cb.surname = "Coulomb"
+
+    captured = capsys.readouterr()
+    correct_out = "test_setter_logging | surname | auditor"
+    assert captured.err.split("\n")[1] == correct_out
+
+
+def test_message_logging(capsys):
+    """Test logging of special message field."""
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(message)s"
+
+    ann.configure(
+        analyst_name="test_message_logging",
+        stream_format_str=format_str,
+    )
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    cb.is_hurt_and_bearded()
+
+    captured = capsys.readouterr()
+    test_output = captured.err.split("\n")
+    correct_out = (
+        "test_message_logging | is_hurt_and_bearded | Adding a message easily"
+    )
+    assert test_output[1] == correct_out
+
+
+def test_extra_info_logging(capsys):
+    """Test logging of extra info fields."""
+    ann = Annalist()
+
+    format_str = (
+        "%(analyst_name)s | %(function_name)s | %(injured)s | %(bearded)s"
+    )
+
+    ann.configure(
+        analyst_name="test_extra_info_logging",
+        stream_format_str=format_str,
+    )
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    cb.grow_craig(2)
+
+    captured = capsys.readouterr()
+    test_output = captured.err.split("\n")
+    correct_out = "test_extra_info_logging | grow_craig | True | True"
+    assert test_output[1] == correct_out
+
+
+def test_logging_levels(capsys):
+    """Test logging level propagation."""
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(levelname)s"
+
+    ann.configure(
+        analyst_name="test_logging_levels",
+        stream_format_str=format_str,
+        level_filter="WARNING",
+    )
+    print(ann.logger.level)
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    # Should be suppressed
+    cb.grow_craig(2)
+
+    # Should log
     cb.shoesize = 11
 
-    print(cb)
+    captured = capsys.readouterr()
+    test_output = captured.err.split("\n")
+    print(test_output)
+    correct_out = "test_logging_levels | shoesize | ERROR"
+    assert test_output[0] == correct_out

@@ -50,13 +50,7 @@ class Craig:
         return self._shoesize
 
     @shoesize.setter
-    @annalizer.annalize(
-        level="ERROR",
-        message="Adding a message easily",
-        extra_info={
-            "site": "Boomshakalaka",
-        },
-    )
+    @annalizer.annalize(level="ERROR")
     def shoesize(self, value: int):
         """Set the shoesize of your Craig."""
         self._shoesize = value
@@ -65,8 +59,7 @@ class Craig:
         """Just a wrapper for the inner grow_craig."""
 
         @annalizer.annalize(
-            level="DEBUG",
-            message="This one is nested",
+            message=f"{self.extra_info}",
             extra_info=self.extra_info,
         )
         def grow_craig(feet: float):
