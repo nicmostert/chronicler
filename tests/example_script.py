@@ -6,7 +6,6 @@ from tests.example_class import Craig
 if __name__ == "__main__":
     ann = Annalist()
     ann.configure(
-        filename="tests/logfile.txt",
         analyst_name="Nic Baby, Every Time",
     )
     ann2 = Annalist()
