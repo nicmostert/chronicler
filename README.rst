@@ -7,9 +7,6 @@ Annalist
 
 .. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
         :target: https://annalist.readthedocs.io/en/latest/?version=latest
-.. image:: https://readthedocs.org/projects/annalist/badge/?version=latest
-        :target: https://annalist.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
         :alt: Documentation Status
 
 .. image:: https://results.pre-commit.ci/badge/github/nicmostert/annalist/main.svg
