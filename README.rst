@@ -122,16 +122,27 @@ All the fields that we consider useful are listed below:
 | Field              | Description                            | Source              |
 +====================+========================================+=====================+
 | ``analyst_name``   | Name of the analyst writing the script | User configured     |
++--------------------+----------------------------------------+---------------------+
 | ``function_name``  | Function Name                          | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``function_doc``   | Function Docstring                     | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``ret_val``        | Return value                           | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``ret_val_type``   | Return value type                      | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``ret_annotation`` | Annotation of return value             | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``params``         | Input parameters                       | Function Inspection |
++--------------------+----------------------------------------+---------------------+
 | ``asctime``        | Time of function call                  | Logging Library     |
++--------------------+----------------------------------------+---------------------+
 | ``levelname``      | Logging level name                     | Logging Library     |
++--------------------+----------------------------------------+---------------------+
 | ``levelno``        | Logging level number                   | Logging Library     |
++--------------------+----------------------------------------+---------------------+
 | ``message``\*      | Needs to be passed as extra param      | Logging Library     |
++--------------------+----------------------------------------+---------------------+
 | ``name``           | Logger name                            | Logging Library     |
 +--------------------+----------------------------------------+---------------------+
 
@@ -144,7 +155,7 @@ The ``message`` field is an optional parameter that can be passed directly to th
         ...
 
 
-You can also specify the level of the logger in the same way
+You can also specify the level of the logger in the same way, as a decorator keword argument.
 
 ::
 
@@ -152,13 +163,12 @@ You can also specify the level of the logger in the same way
     def example_function():
         ...
 
-
 Custom Fields
 --------------
 
 Annalist accepts any number of arbitrary fields in the formatter. If these fields are not one of the fields available by default, the fields is dynamically added and processed. However, this field must then be passed to the decorator in the ``extra_info`` argument.
 
-For example, you might set the formatter as follows. Note that the fields ``site`` and ``hts_file`` are custom, and are not available by default.
+For example, you might set the formatter as follows. In this example, the fields ``site`` and ``hts_file`` are custom, and are not available by default.
 
 
 ::
