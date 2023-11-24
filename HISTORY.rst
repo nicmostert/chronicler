@@ -25,3 +25,9 @@ History
 * Now takes arbitrary input paramaters.
 * Able to support Hilltop audit trail parity.
 * User can control logging levels
+
+0.3.1 (2023-11-24)
+------------------
+
+* Now REALLLY able to support Hilltop audit trail parity.
+* Improved support for class method logging
