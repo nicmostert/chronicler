@@ -26,8 +26,9 @@ History
 * Able to support Hilltop audit trail parity.
 * User can control logging levels
 
-0.3.1 (2023-11-24)
+0.3.3 (2023-11-24)
 ------------------
 
+* I'm not sure what happened to 0.3.1 and 0.3.2
 * Now REALLLY able to support Hilltop audit trail parity.
 * Improved support for class method logging
