@@ -1,6 +1,5 @@
 """Main module."""
 
-import functools
 import inspect
 import logging
 import re
@@ -8,15 +7,27 @@ from os import PathLike
 
 LOGGER_LEVELS = {
     "DEBUG": logging.DEBUG,
+    10: logging.DEBUG,
     "INFO": logging.INFO,
+    20: logging.INFO,
     "WARNING": logging.WARNING,
+    30: logging.WARNING,
     "ERROR": logging.ERROR,
+    40: logging.ERROR,
     "CRITICAL": logging.CRITICAL,
+    50: logging.CRITICAL,
 }
 
 
-class FunctionLogger(logging.Logger):
+class AnnalistLogger(logging.Logger):
+    """Custom Logger class to add contextual information."""
+
     def __init__(self, name, extra_attributes):
+        """Construct a AnnalistLogger.
+
+        Extends the functionality of the Logger class to accept user-defined
+        fields as attributes.
+        """
         if extra_attributes:
             self.extra_attributes = extra_attributes
         else:
@@ -26,9 +37,11 @@ class FunctionLogger(logging.Logger):
         self.propagate = True
 
     def add_attributes(self, extra_attributes: list):
+        """Add user-defined fields as attributes."""
         self.extra_attributes += extra_attributes
 
     def makeRecord(self, *args, **kwargs):
+        """Override Logger.makeRecord to accept user-defined fields."""
         rv = super().makeRecord(*args, **kwargs)
         for attr in self.extra_attributes:
             rv.__dict__[attr] = rv.__dict__.get(attr, None)
@@ -52,13 +65,36 @@ class Singleton(type):
 
 
 class Annalist(metaclass=Singleton):
-    """Annalist Class."""
+    """Annalist Class.
+
+    Attributes
+    ----------
+    logger : AnnalistLogger
+        A custom subclass of logging.Logger which allows additional
+        user-defined variables to be parsed from the formatter and added
+        dynamically.
+    stream_handler : logging.StreamHandler
+        Logging handler that sends output to streams such as `sys.stdout`,
+        `sys.stderr`, etc. Will be passed the `stream_formatter` attribute.
+        See documentation for logging.StreamHandler for more info.
+    file_handler : logging.FileHandler
+        Logging handler that sends output to the logfile defined by the
+        `logfile` attribute. Will be passed the `file_formatter` attribute.
+        See `logging.FileHandler documentation`_ for more info.
+    stream_formatter : str
+        Stream formatting string to be parsed by `logging.Formatter`.
+        Used to set up `stream_handler`.
+        See `logging.Formatter documentation`_ for more info.
+    file_formatter : str
+        File formatting string to be parsed by `logging.Formatter`.
+        See `logging.Formatter documentation`_ for more info.
+    """
 
     _configured = False
 
     def __init__(self):
         """Not a true init I guess."""
-        self.logger = FunctionLogger("TempLogger", None)
+        self.logger = AnnalistLogger("TempLogger", None)
         self.stream_handler = logging.StreamHandler()  # Log to console
 
     def configure(
@@ -113,11 +149,11 @@ class Annalist(metaclass=Singleton):
             "ret_val_type",
         ]
 
-        all_attributes = default_attributes + extra_attributes
+        self.all_attributes = default_attributes + extra_attributes
 
-        self.default_level = LOGGER_LEVELS[default_level]
+        self._default_level = LOGGER_LEVELS[default_level]
 
-        self.logger = FunctionLogger("auditor", all_attributes)
+        self.logger = AnnalistLogger("auditor", self.all_attributes)
 
         if self.logfile:
             self.logger.addHandler(self.file_handler)
@@ -129,9 +165,9 @@ class Annalist(metaclass=Singleton):
         self.stream_handler.setFormatter(self.stream_formatter)
         # self.set_stream_formatter(self.stream_formatter)
 
-        self.level_filter = LOGGER_LEVELS[level_filter]
+        self._level_filter = LOGGER_LEVELS[level_filter]
 
-        self.logger.setLevel(self.level_filter)
+        self.logger.setLevel(self._level_filter)
 
         # Adding some more fields to the logger this way
         self._configured = True
@@ -147,14 +183,62 @@ class Annalist(metaclass=Singleton):
 
     @analyst_name.setter
     def analyst_name(self, value):
+        """Set the analyst_name property.
+
+        Name of the analyst who is invoking the script.
+
+        Parameters
+        ----------
+        value : str
+            The first
+        """
         if not self._configured:
             raise ValueError(
                 "Annalist not configured. Configure object after retrieval."
             )
         self._analyst_name = value
 
+    @property
+    def level_filter(self):
+        """The level_filter property."""
+        return self._level_filter
+
+    @level_filter.setter
+    def level_filter(self, value):
+        self._level_filter = value
+        self.logger.setLevel(self._level_filter)
+
+    @property
+    def default_level(self):
+        """The default_level property."""
+        return self._default_level
+
+    @default_level.setter
+    def default_level(self, value):
+        """Set the default_level property."""
+        self._default_level = value
+
     @staticmethod
     def parse_formatter(format_string):
+        """Parse a formatting string.
+
+        Extracts field names from a formatting string.
+        Only `printf-style` (%-style) strings are supported.
+
+        Parameters
+        ----------
+        format_string : str
+            A `printf-style` (%-style) string.
+
+        Returns
+        -------
+        list
+            A list of parameter names in the order that they appear in the
+            format string.
+
+        .. _printf-style:
+            https://docs.python.org/3/library/stdtypes.html#old-string-formatting`
+        """
         return re.findall(r"%\((.*?)\)", format_string)
 
     def set_file_formatter(
@@ -200,6 +284,7 @@ class Annalist(metaclass=Singleton):
 
         report = {}
         signature = inspect.signature(func)
+
         report["function_name"] = func.__name__
         report["function_doc"] = func.__doc__
         if signature.return_annotation == inspect._empty:
@@ -254,36 +339,3 @@ class Annalist(metaclass=Singleton):
             message,
             extra=report,
         )
-
-    def annalize(
-        self,
-        _func=None,
-        message: str = "",
-        level: str | None = None,
-        *,
-        extra_info: dict | None = None,
-    ):
-        """I'm really not sure how this is going to work."""
-
-        def decorator_logger(func):
-            # This line reminds func that it is func and not the decorator
-            @functools.wraps(func)
-            def wrapper(*args, **kwargs):
-                result = func(*args, **kwargs)
-                self.log_call(
-                    message, level, func, result, extra_info, *args, **kwargs
-                )
-                return result
-
-            return wrapper
-
-        # This section handles optional arguments passed to the logger
-        if _func is None:
-            return decorator_logger
-        else:
-            return decorator_logger(_func)
-
-    def annalize_class(
-        self,
-    ):
-        pass

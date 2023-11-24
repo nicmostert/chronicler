@@ -28,22 +28,25 @@ Create an ``Annalist`` object at the base of the module you'd like to audit. use
 ::
 
     from annalist.annalist import Annalist
+    from annalist.decorators import function_logger
 
     ann = Annalist()
     ann.configure()
 
-    @ann.annalize
+    @function_logger
     def example_function():
         ...
 
-Annalise also works on most class functions, with some exceptions.
+Annalist also works on class methods, with the help of the ``ClassLogger`` decorator.
 
 ::
+
+    from annalist.decorators import ClassLogger
 
     class ExampleClass():
 
         # Initializers can be annalized just fine
-        @ann.annalize
+        @function_logger
         __init__(self, arg1, arg2):
             self.arg1 = arg1
             self._arg2 = arg2
@@ -57,8 +60,8 @@ Annalise also works on most class functions, with some exceptions.
 
         # Putting an annalizer on a setter is fine though.
         # Just make sure you put it after the setter decorator.
+        @function_logger
         @arg2.setter
-        @ann.annalize
         def arg2(self, value):
             self._arg2 = value
 
@@ -88,12 +91,17 @@ Annalist supports two formatters. The *File formatters* formats the output to th
 
 ::
 
-    annalizer.set_file_formatter(
+    from annalist.annalist import Annalist
+
+    ann = Annalist()
+    ann.configure(...)
+
+    ann.set_file_formatter(
         "%(asctime)s, %(analyst_name)s, example_funtion "
         "| %(message)s",
     )
 
-    annalizer.set_stream_formatter(
+    ann.set_stream_formatter(
         "%(asctime)s, %(function_name)s "
     )
 
@@ -150,7 +158,7 @@ The ``message`` field is an optional parameter that can be passed directly to th
 
 ::
 
-    @ann.annalize(message="this is a message")
+    @function_logger(message="this is a message")
     def example_function():
         ...
 
@@ -159,9 +167,70 @@ You can also specify the level of the logger in the same way, as a decorator kew
 
 ::
 
-    @ann.annalize(level="DEBUG")
+    @function_logger(level="DEBUG")
     def example_function():
         ...
+
+Unfortunately, Annalist does not yet offer support of passing these fields into the ``@ClassLogger``. However, we can still get information to the logger by inspecting the method arguments, and the attributes on the class instance. Consider the following setup::
+
+    from annalist.decorators import ClassLogger
+
+    class MyClass:
+        @ClassLogger
+        def __init__(attr, prop):
+            self.attr = attr
+            self._prop = prop
+
+        @property
+        def prop(self):
+            return prop
+
+        @ClassLogger
+        @prop.setter
+        def prop(self, value):
+            self._prop = value
+
+        @ClassLogger
+        def square_attr(self):
+            return self.attr ** 2
+
+        @ClassLogger
+        def add_prop_to_attr(self):
+            return attr + prop
+
+        @ClassLogger
+        @staticmethod
+        def increment_value(attr):
+            return attr += 1
+
+Note the two class attributes named ``attr`` and ``prop``. We can track these properties based on their variable names by passing it into the formatter:
+
+>>> from annalist.annalist import Annalist
+>>> ann = Annalist()
+>>> ann.configure(...)
+>>> ann.add_stream_formatter("%(function_name)s | prop: %(prop)s | attr: %(attr)s")
+
+The ``ClassLogger`` decorator activates upon runtime and inspects the namespace. First, it looks for the attribute in the names of the input arguments of the decorated function. If found, it sends it to the formatter (See "Custom Fields"):
+
+>>> mc = MyClass(7, 2)
+>>> mc.prop = 3
+prop | prop: 3 | attr: 7
+
+Notice that the ``setter`` of ``prop`` caused ``ClassLogger`` to look for the values of ``prop`` and ``attr`` on the ``mc`` instance.
+
+>>> mc.square_attr()
+49
+square_attr | prop: 3 | attr: 7
+
+Notice how the function ``square_attr`` did not alter the value of ``attr``.
+
+Because this logger is sensitive to the state of the logger, it is important to be weary of variable names.
+
+>>> mc.increment_value(5)
+6
+square_attr | prop: 3 | attr: 5
+
+Notice how, despite having no real reference to the attribute ``attr`` on the namespace, the logger found the input argument named ``attr``, and associated this with the attribute it is logging. I believe this to be a useful feature, but care should be taken when using it like this.
 
 Custom Fields
 --------------
