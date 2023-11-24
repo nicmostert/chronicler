@@ -242,7 +242,12 @@ For example, you might set the formatter as follows. In this example, the fields
 
 ::
 
-    annalizer.set_file_formatter(
+    from annalist.annalist import Annalist
+
+    ann = Annalist()
+    ann.configure(...)
+
+    ann.set_file_formatter(
         "%(asctime)s, %(analyst_name)s, %(site)s, %(hts_file)s "
         "| %(message)s",
     )
@@ -251,9 +256,10 @@ Then, passing those parameters into the example function looks like this:
 
 ::
 
+    from annalist.decorators import function_logger
     hts_file = "file.hts"
 
-    @ann.annalize(
+    @function_logger(
         level="INFO",
         message="This decorator passes extra parameters",
         extra_info={
@@ -261,21 +267,32 @@ Then, passing those parameters into the example function looks like this:
             "hts_file": hts_file,
         }
     )
-    def example_function():
+    def example_function(arg1, arg2):
         ...
 
 
 If the custom fields are not included in a function decorator, they will simply default to ``None``.
 
-When using Annalist in a class method, you might want to log class properties. Unfortunately, the following syntax will not work, since the decorator has no knowledge of the class instance (self).
+The ``function_logger`` can also be used in "wrapper" mode. This is useful when an undecorated function needs to be annalized at call-time::
 
+    function_logger(
+        example_function,
+        level="INFO",
+        message="This decorator passes extra parameters",
+        extra_info={
+            "site_name": "Site one",
+            "hts_file": hts_file,
+        }
+    )(arg1, arg2)
+
+When using Annalist in a class method, you might want to log class attributes. Unfortunately, the following syntax will not work, since the decorator has no knowledge of the class instance (self).
 
 ::
 
     class ExampleClass:
         ...
 
-        @ann.annalize(
+        @function_logger(
             level="INFO",
             message="This decorator passes extra parameters",
             extra_info={
@@ -287,31 +304,21 @@ When using Annalist in a class method, you might want to log class properties. U
             ...
 
 
-In this case, you would need to wrap your method as a function in a method that passes the instance context to the decorator.
-
+The way to track class attributes is to use the ``ClassLogger`` decorator. This decorator activates at runtime. Any custom fields passed to the Annalist formatter are noted, and ``ClassLogger`` inspects the class instance for attributes with the same name.
 
 ::
 
+    from annalist.decorators import ClassLogger
+
     class ExampleClass:
-        ...
+        def __init__(self, attr):
+            self.attr = attr
 
-
+        @ClassLogger
         def example_function(self):
-            @ann.annalize(
-                level="INFO",
-                message="This decorator passes extra parameters",
-                extra_info={
-                    "site_name": self.site_name,
-                    "hts_file": self.hts_file,
-                }
-            )
-            def example_function():
-                ...
+            ...
 
-            example_function() # OR return example_function()
-
-Notice that I gave the same function name to the outer and inner functions. This seems to work consistently by my testing since the two functions are in different name-spaces. I'm not sure if this is good practice though. But it keeps the logs nice and clean and non-confusing.
-
+See annalist.decorators.ClassLogger for more details.
 
 Levels
 --------
@@ -330,7 +337,7 @@ A annalized method can be logged at a raised or lowered level by specifying the 
 
 ::
 
-    @ann.annalize(level="DEBUG")
+    @function_logger(level="DEBUG")
     def unimportant_function():
         ...
 
