@@ -5,6 +5,7 @@ import inspect
 import logging
 
 from annalist.annalist import Annalist
+from annalist.decorators import function_logger
 from tests.example_class import Craig, return_greeting, which_craig_is_that
 
 logger = logging.getLogger(__name__)
@@ -28,13 +29,13 @@ if __name__ == "__main__":
 
     return_greeting("Craig")
 
-    ann.annalize(
+    function_logger(
         which_craig_is_that,
         message="No decorator, just a quick peek",
         extra_info={"injured": "YEAH (in a lil jon voice)."},
     )("Craig")
 
-    ann.annalize(
+    function_logger(
         inspect.unwrap(return_greeting),
         message="Redecorating a decorated function",
         extra_info={"injured": "OKAAAY (in a lil jon voice)."},
@@ -54,15 +55,15 @@ if __name__ == "__main__":
     print("===================================================B")
     print(cb.height)
     print("===================================================A")
-    # army_surnames = [
-    #     "Hawthorne",
-    #     "Sandusky",
-    #     "Gilgamesh",
-    #     "Harriet",
-    #     "Pilkington",
-    #     "Reid",
-    #     "Kannemeyer"
-    # ]
-    #
-    # army = cb.army_of_craigs(army_surnames)
-    # print(army)
+    army_surnames = [
+        "Hawthorne",
+        "Sandusky",
+        "Gilgamesh",
+        "Harriet",
+        "Pilkington",
+        "Reid",
+        "Kannemeyer",
+    ]
+
+    army = cb.army_of_craigs(army_surnames)
+    print(army)

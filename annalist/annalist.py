@@ -1,6 +1,5 @@
 """Main module."""
 
-import functools
 import inspect
 import logging
 import re
@@ -20,11 +19,11 @@ LOGGER_LEVELS = {
 }
 
 
-class FunctionLogger(logging.Logger):
+class AnnalistLogger(logging.Logger):
     """Custom Logger class to add contextual information."""
 
     def __init__(self, name, extra_attributes):
-        """Construct a FunctionLogger.
+        """Construct a AnnalistLogger.
 
         Extends the functionality of the Logger class to accept user-defined
         fields as attributes.
@@ -70,7 +69,7 @@ class Annalist(metaclass=Singleton):
 
     Attributes
     ----------
-    logger : FunctionLogger
+    logger : AnnalistLogger
         A custom subclass of logging.Logger which allows additional
         user-defined variables to be parsed from the formatter and added
         dynamically.
@@ -95,7 +94,7 @@ class Annalist(metaclass=Singleton):
 
     def __init__(self):
         """Not a true init I guess."""
-        self.logger = FunctionLogger("TempLogger", None)
+        self.logger = AnnalistLogger("TempLogger", None)
         self.stream_handler = logging.StreamHandler()  # Log to console
 
     def configure(
@@ -154,7 +153,7 @@ class Annalist(metaclass=Singleton):
 
         self._default_level = LOGGER_LEVELS[default_level]
 
-        self.logger = FunctionLogger("auditor", self.all_attributes)
+        self.logger = AnnalistLogger("auditor", self.all_attributes)
 
         if self.logfile:
             self.logger.addHandler(self.file_handler)
@@ -340,31 +339,3 @@ class Annalist(metaclass=Singleton):
             message,
             extra=report,
         )
-
-    def annalize(
-        self,
-        _func=None,
-        message: str = "",
-        level: str | None = None,
-        *,
-        extra_info: dict | None = None,
-    ):
-        """I'm really not sure how this is going to work."""
-
-        def decorator_logger(func):
-            # This line reminds func that it is func and not the decorator
-            @functools.wraps(func)
-            def wrapper(*args, **kwargs):
-                result = func(*args, **kwargs)
-                self.log_call(
-                    message, level, func, result, extra_info, *args, **kwargs
-                )
-                return result
-
-            return wrapper
-
-        # This section handles optional arguments passed to the logger
-        if _func is None:
-            return decorator_logger
-        else:
-            return decorator_logger(_func)

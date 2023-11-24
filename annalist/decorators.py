@@ -1,3 +1,6 @@
+"""Logging Decorators."""
+
+import functools
 import inspect
 import logging
 from functools import partial
@@ -11,8 +14,94 @@ logger.addHandler(logging.StreamHandler())
 ann = Annalist()
 
 
+def function_logger(
+    _func=None,
+    message: str = "",
+    level: str | None = None,
+    *,
+    extra_info: dict | None = None,
+):
+    """Decorate a function to provide Annalist logging functionality.
+
+    This function is used as either a decorator or a logger to provide
+    Annalist logging functionality to a function.
+
+    Examples
+    ________
+    When applied where the function is declared, this function serves as a
+    decorator::
+
+        @function_logger
+        def example_function(arg1, arg2, ...):
+            ...
+
+    It can also be used where the function is called, and is then used as a
+    wrapper::
+
+        function_logger(example_function)(arg1, arg2, ...)
+
+    In either case, ``function_logger`` can take optional arguments to specify
+    a custom message, a log level, as well as any other info that needs to be
+    sent to Annalist's formatter::
+
+        @function_logger(
+            message="Custom Message!",
+            extra_info={
+                "custom_field1": value1,
+                "custom_field2": value2,
+            },
+        )
+        def example_function(arg1, arg2, ...):
+            ...
+
+    or at calling time::
+
+        function_logger(
+            example_function,
+            message="Custom Message!",
+            extra_info={
+                "custom_field1": value1,
+                "custom_field2": value2,
+            },
+        )(arg1, arg2, ...)
+
+    Parameters
+    ----------
+    _func : int, optional
+        The function to be logged, either passed implicitly in the decorator
+        case, or explicitly in the wrapper case. See examples.
+    message : str, optional
+        A custom message to be passed to the ``message`` field of the
+        formatter. Note that this message will not appear if the message
+        field is not present
+        in the formatter.
+    extra_info : dict, optional
+        Extra info to be passed to the formatter. Keys in the dict should
+        correspond to fields present in the formatter for them to show up.
+
+    """
+
+    def decorator_logger(func):
+        # This line reminds func that it is func and not the decorator
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            ann.log_call(
+                message, level, func, result, extra_info, *args, **kwargs
+            )
+            return result
+
+        return wrapper
+
+    # This section handles optional arguments passed to the logger
+    if _func is None:
+        return decorator_logger
+    else:
+        return decorator_logger(_func)
+
+
 class Wrapper:
-    """Wrapper that triggers on __get__."""
+    """Wrapper that overrides some method hooks so that logging can happen."""
 
     def __init__(self, func, message=None):
         """Call the init function of super.
@@ -59,8 +148,73 @@ class Wrapper:
         return partial(self.__call_property__, instance)
 
 
-class LoggingDecorator(Wrapper):
-    """Logging Class."""
+class ClassLogger(Wrapper):
+    """Decorate class methods to provide Annalist functionality.
+
+    Used as a decorator for class methods to provide Annalist logging.
+    Unlike ``function_logger``, this decorator preserves knowledge of
+    the class instance of the method that it decorates, which can be
+    used to log information that is only available at runtime.
+
+    This logger looks for input arguments instance that are named
+    the same as custom fields in the formatter. If none such arguments
+    are found, it looks for attributes on the parent class that match.
+    If any are found, they are passed to Annalist to log them according
+    to the formatter specification.
+
+    Examples
+    --------
+    Class methods can be decorated with the ``ClassLogger`` to provide
+    logging that preserves knowledge of the class instance. However,
+    some linters have a difficult time understanding this syntax.
+    For example, ``mypy`` does not like custom decorator on
+    __init__, even though this is perfectly legal code. In this case,
+    add the linter comment ``# type: ignore`` inline:
+
+        class MyClass:
+            @ClassLogger  # type: ignore
+            def __init__(self, prop1, ...):
+                self._prop1 = prop1
+                ...
+
+    It is also possible to decorate properties. These should be decorated
+    on the ``setter``, and not the ``@property``. Once again,
+    ``mypy`` is not a big fan of this syntax, so add the ``# type: ignore``
+    line if necessary::
+
+            @property
+            def prop1(self):
+                return self._prop1
+
+            @ClassLogger  # type: ignore
+            @prop1.setter
+            def prop1(self, value):
+                self._prop1 = value
+
+    Do not decorate the ``@property`` method itself. This creates an infinite
+    loop, as the logger calls the property, which calls the property ...
+
+    Normal methods, static methods, and class methods can be decorated as
+    normal.
+
+            @ClassLogger
+            def normal_method(self, arg):
+                ...
+
+            @ClassLogger
+            @staticmethod
+            def static_method(arg):
+                ...
+
+            @ClassLogger
+            @classmethod
+            def class_method(cls, arg):
+                ...
+
+    I haven't tried all the magic methods. ``__init__`` works fine.
+    ``__repr__`` does not, it does the infinite loop thing.
+
+    """
 
     def __call__(self, *args, **kwargs):
         """Triggers when a function is called.

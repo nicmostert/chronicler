@@ -6,6 +6,7 @@ import inspect
 import json
 
 from annalist.annalist import Annalist
+from annalist.decorators import function_logger
 from tests.example_class import Craig, return_greeting, which_craig_is_that
 
 
@@ -395,7 +396,7 @@ def test_logging_levels(capsys):
     ann.logger.error("No message field in the formatter")
 
     # Should log
-    ann.annalize(which_craig_is_that, level="WARNING")("right")
+    function_logger(which_craig_is_that, level="WARNING")("right")
 
     # Should be suppressed
     cb = Craig(
@@ -438,7 +439,7 @@ def test_redecoration(capsys):
     # Undecorated - no logging
     which_craig_is_that("Left")
 
-    ann.annalize(
+    function_logger(
         which_craig_is_that,
         message="Inline decoration of an undecorated function.",
     )("right")
@@ -448,7 +449,7 @@ def test_redecoration(capsys):
 
     # Redecorating a decorated function
 
-    ann.annalize(
+    function_logger(
         inspect.unwrap(return_greeting), message="Redecorated message"
     )("Speve")
 
