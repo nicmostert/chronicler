@@ -341,11 +341,15 @@ class ClassLogger(Wrapper):
         fill_data = {}
 
         if len(setter_value) != 0:
+            arg_values += [list(setter_value.values())[0]]
             if list(setter_value.keys())[0] in ann.all_attributes:
                 fill_data = setter_value
 
+
+        logger.debug(f"Fill data: {fill_data}")
         logger.debug(f"Function Arguments: {func_args}")
         logger.debug(f"Argument Values: {arg_values}")
+        logger.debug(f"Setter Values: {setter_value}")
         logger.debug(f"Looking for: {ann.all_attributes}")
         # if is_setter:
         #     if func.__name__ in ann.all_attributes:
