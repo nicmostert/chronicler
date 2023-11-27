@@ -345,7 +345,6 @@ class ClassLogger(Wrapper):
             if list(setter_value.keys())[0] in ann.all_attributes:
                 fill_data = setter_value
 
-
         logger.debug(f"Fill data: {fill_data}")
         logger.debug(f"Function Arguments: {func_args}")
         logger.debug(f"Argument Values: {arg_values}")
