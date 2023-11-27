@@ -46,7 +46,7 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
     class ExampleClass():
 
         # Initializers can be annalized just fine
-        @function_logger
+        @ClassLogger
         __init__(self, arg1, arg2):
             self.arg1 = arg1
             self._arg2 = arg2
@@ -60,7 +60,7 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
 
         # Putting an annalizer on a setter is fine though.
         # Just make sure you put it after the setter decorator.
-        @function_logger
+        @ClassLogger
         @arg2.setter
         def arg2(self, value):
             self._arg2 = value
@@ -338,7 +338,7 @@ A annalized method can be logged at a raised or lowered level by specifying the 
 ::
 
     @function_logger(level="DEBUG")
-    def unimportant_function():
+    def untracked_function():
         ...
 
 ==================
