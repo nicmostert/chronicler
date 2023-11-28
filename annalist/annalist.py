@@ -18,6 +18,10 @@ LOGGER_LEVELS = {
     50: logging.CRITICAL,
 }
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler())
+
 
 class AnnalistLogger(logging.Logger):
     """Custom Logger class to add contextual information."""
@@ -93,7 +97,12 @@ class Annalist(metaclass=Singleton):
     _configured = False
 
     def __init__(self):
-        """Not a true init I guess."""
+        """Annalist Constructor.
+
+        Construsts an "unconfigured" instance of Annalist. However, since
+        annalist is a singleton, it will simply retrieve a configured annalist
+        if one exists somewhere in the namespace.
+        """
         self.logger = AnnalistLogger("TempLogger", None)
         self.stream_handler = logging.StreamHandler()  # Log to console
 
@@ -119,16 +128,22 @@ class Annalist(metaclass=Singleton):
             stream_format_attrs = self.parse_formatter(stream_format_str)
             extra_attributes += stream_format_attrs
 
+        self.date_format = "%Y-%m-%d %H:%M:%S"
         default_formatter = logging.Formatter(
-            "%(asctime)s | %(levelname)s | %(name)s | %(analyst_name)s"
+            "%(asctime)s | %(levelname)s | %(name)s | %(analyst_name)s",
+            self.date_format,
         )
         # Set up formatters
         if file_format_str:
-            self.file_formatter = logging.Formatter(file_format_str)
+            self.file_formatter = logging.Formatter(
+                file_format_str, self.date_format
+            )
         else:
             self.file_formatter = default_formatter
         if stream_format_str:
-            self.stream_formatter = logging.Formatter(stream_format_str)
+            self.stream_formatter = logging.Formatter(
+                stream_format_str, self.date_format
+            )
         else:
             self.stream_formatter = default_formatter
 
@@ -259,7 +274,7 @@ class Annalist(metaclass=Singleton):
 
         file_format_attrs = self.parse_formatter(formatter)
         self.logger.add_attributes(file_format_attrs)
-        self.file_formatter = logging.Formatter(formatter)
+        self.file_formatter = logging.Formatter(formatter, self.date_format)
         self.file_handler.setFormatter(self.file_formatter)
         self.logger.addHandler(self.file_handler)
 
@@ -268,7 +283,7 @@ class Annalist(metaclass=Singleton):
         stream_format_attrs = self.parse_formatter(formatter)
         self.logger.add_attributes(stream_format_attrs)
         self.logger.removeHandler(self.stream_handler)
-        self.stream_formatter = logging.Formatter(formatter)
+        self.stream_formatter = logging.Formatter(formatter, self.date_format)
         self.stream_handler = logging.StreamHandler()
         self.stream_handler.setFormatter(self.stream_formatter)
         self.logger.addHandler(self.stream_handler)
@@ -286,7 +301,7 @@ class Annalist(metaclass=Singleton):
         signature = inspect.signature(func)
 
         report["function_name"] = func.__name__
-        report["function_doc"] = func.__doc__
+        report["function_doc"] = clean_str(func.__doc__)
         if signature.return_annotation == inspect._empty:
             report["ret_annotation"] = None
         else:
@@ -319,11 +334,11 @@ class Annalist(metaclass=Singleton):
                 "kind": kind,
                 "value": value,
             }
-        report["params"] = params
+        report["params"] = clean_str(params)
 
-        report["analyst_name"] = self.analyst_name
+        report["analyst_name"] = clean_str(self.analyst_name)
         report["ret_val_type"] = type(ret_val)
-        report["ret_val"] = ret_val
+        report["ret_val"] = clean_str(ret_val)
 
         if extra_data:
             for key, val in extra_data.items():
@@ -336,6 +351,18 @@ class Annalist(metaclass=Singleton):
 
         self.logger.log(
             logger_level,
-            message,
+            clean_str(message),
             extra=report,
         )
+
+
+def clean_str(s):
+    """Clean a string for nice clean logging."""
+    process = {
+        ord("\t"): None,
+        ord("\f"): " ",
+        ord("\r"): None,
+        ord(","): ";",
+    }
+    s = str(s).translate(process)
+    return s

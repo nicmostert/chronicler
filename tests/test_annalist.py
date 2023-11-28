@@ -63,8 +63,8 @@ def test_all_fields(capsys):
         '"ret_val": "Hi Craig",'
         '"ret_val_type": "<class \'str\'>",'
         '"ret_annotation": "<class \'str\'>",'
-        "\"params\": \"{'name': {'default': 'loneliness', "
-        "'annotation': <class 'str'>, 'kind': 'keyword', 'value': 'Craig'}}\","
+        "\"params\": \"{'name': {'default': 'loneliness'; "
+        "'annotation': <class 'str'>; 'kind': 'keyword'; 'value': 'Craig'}}\","
         '"asctime": "unknown",'
         '"filename": "annalist.py",'
         '"funcName": "log_call",'
@@ -191,7 +191,7 @@ def test_nested_method_logging(capsys):
 
 
 def test_static_method_logging(capsys):
-    """Test logging of a static."""
+    """Test logging of a static method."""
     ann = Annalist()
 
     format_str = "%(analyst_name)s | %(function_name)s | %(ret_val)s"
@@ -325,15 +325,15 @@ def test_message_logging(capsys):
     test_output = captured.err.split("\n")
     correct_out = [
         "test_message_logging | __init__ | METHOD Craig.__init__ "
-        + "called with args () and kwargs {'surname': 'Beaven', "
-        + "'height': 5.5, 'shoesize': 9, 'injured': True, "
+        + "called with args () and kwargs {'surname': 'Beaven'; "
+        + "'height': 5.5; 'shoesize': 9; 'injured': True; "
         + "'bearded': True}. It is on an instance of "
-        + "Craig, and returns the value None.",
+        + "Craig; and returns the value None.",
         "test_message_logging | surname | PROPERTY Craig.surname "
         + "SET TO Pilkington. It is on an instance of Craig.",
         "test_message_logging | is_hurt_and_bearded | METHOD "
         + "Craig.is_hurt_and_bearded called with args () and kwargs {}. "
-        + "It is on an instance of Craig, and returns the value True.",
+        + "It is on an instance of Craig; and returns the value True.",
     ]
 
     assert test_output[0] == correct_out[0]
@@ -378,7 +378,15 @@ def test_class_attribute_logging(capsys):
 
 
 def test_attribute_override_edgecase(capsys):
-    """Test logging of extra info fields."""
+    """Test that edge case Sam found.
+
+    Specifically, the one where a method argument has the same name as a
+    class attribute. If the argument is optional (default None),
+    then it should be replaced with the class attribute.
+
+    However, if the argument is explicitely passed as None, it should
+    be logged as None.
+    """
     ann = Annalist()
 
     format_str = "%(analyst_name)s | %(function_name)s | %(height)s"
@@ -398,6 +406,7 @@ def test_attribute_override_edgecase(capsys):
 
     cb.measure_the_craig()
     cb.measure_the_craig(7.2)
+    cb.measure_the_craig(None)
 
     captured = capsys.readouterr()
     test_output = captured.err.split("\n")
@@ -405,10 +414,12 @@ def test_attribute_override_edgecase(capsys):
         "test_attribute_override_edgecase | __init__ | 5.5",
         "test_attribute_override_edgecase | measure_the_craig | 5.5",
         "test_attribute_override_edgecase | measure_the_craig | 7.2",
+        "test_attribute_override_edgecase | measure_the_craig | None",
     ]
     assert test_output[0] == correct_out[0]
     assert test_output[1] == correct_out[1]
     assert test_output[2] == correct_out[2]
+    assert test_output[3] == correct_out[3]
 
 
 def test_logging_levels(capsys):
@@ -460,7 +471,11 @@ def test_logging_levels(capsys):
 
 
 def test_redecoration(capsys):
-    """Test logging level propagation."""
+    """Test the redecoration of functions and methods.
+
+    At this point, decorated methods need to be undecorated
+    (using function.unwrap) before redecorating.
+    """
     ann = Annalist()
 
     format_str = "%(analyst_name)s | %(function_name)s | %(message)s"
@@ -499,3 +514,53 @@ def test_redecoration(capsys):
     assert test_output[0] == correct_out[0]
     assert test_output[1] == correct_out[1]
     assert test_output[2] == correct_out[2]
+
+
+def test_long_and_dirty(capsys):
+    """Test long and dirty log values.
+
+    Long values (i.e. default method messages should be truncated
+    """
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(message)s"
+
+    ann.configure(
+        analyst_name="test_long_and_dirty",
+        stream_format_str=format_str,
+    )
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    surnames = [
+        "Deuteronomy",
+        "Hermitage",
+        "Saville-Tanner",
+        "Schlosser",
+        "Fleetwood-Ziegler",
+        "Porter",
+        "Echeverria-Gomez",
+        "Stansfield",
+        "Berkeley-Hewlitt",
+    ]
+
+    _ = cb.army_of_craigs(surnames)
+
+    correct_out = (
+        "test_long_and_dirty | army_of_craigs | METHOD Craig.army_of_"
+        "craigs called with args (['Deuteronomy'; 'Hermitage'; "
+        "'Saville-Tanner'; 'Schlosser'; 'Fleetwood-Ziegler'; "
+        "'Porter'; 'Echeverria-Gomez'; 'Stansfield'; 'Berkeley-Hewlitt'"
+        "];) and kwargs {}. It is on an instance of Craig; and returns "
+        "the value [<tests.example_clas ... [<class 'list'> of len 9]."
+    )
+    captured = capsys.readouterr()
+    test_output = captured.err.split("\n")
+
+    assert test_output[-2] == correct_out

@@ -227,10 +227,11 @@ class ClassLogger(Wrapper):
             f"with args {args}, and kwargs {kwargs}"
         )
         ret_val = super().__call__(*args, **kwargs)
+        ret_val_str = trunc_value_string(ret_val)
         logger.info(
             f"FUNCTION {self.func} called with args {args} and {kwargs}"
         )
-        logger.info(f"FUNCTION {self.func} RETURNS {ret_val}")
+        logger.info(f"FUNCTION {self.func} RETURNS {ret_val_str}")
         return ret_val
 
     def __call_method__(self, instance, *args, **kwargs):
@@ -249,11 +250,12 @@ class ClassLogger(Wrapper):
         logger.info(f"METHOD {self.func} is on {instance}")
         logger.info(f"METHOD {self.func} RETURNS {ret_val}")
 
+        ret_val_str = trunc_value_string(ret_val)
         message = (
             f"METHOD {self.func.__qualname__} called with "
             + f"args {args} and kwargs {kwargs}. "
             + f"It is on an instance of {instance.__class__.__name__}, "
-            + f"and returns the value {ret_val}."
+            + f"and returns the value {ret_val_str}."
         )
 
         if hasattr(self.func, "__wrapped__"):
@@ -312,9 +314,11 @@ class ClassLogger(Wrapper):
             {},
             setter_value={self.func.fset.__name__: value},
         )
+        val_str = trunc_value_string(value)
+
         message = (
             f"PROPERTY {self.func.fset.__qualname__} "
-            + f"SET TO {value}. "
+            + f"SET TO {val_str}. "
             + f"It is on an instance of {instance.__class__.__name__}."
         )
         ann.log_call(
@@ -388,3 +392,18 @@ class ClassLogger(Wrapper):
         logger.info(f"fill_data = {fill_data}")
 
         return fill_data
+
+
+def trunc_value_string(value):
+    """Construct a short truncated string repr of a long value."""
+    val_str = str(value)
+    if len(val_str) > 20:
+        val_type = type(value)
+        if hasattr(value, "__len__"):
+            val_len = len(value)
+            val_str = (
+                val_str[:20] + f" ... [{val_type} " + f"of len {val_len}]"
+            )
+        else:
+            val_str = val_str[:20] + f" ... [long {val_type} (trunc)]"
+    return val_str

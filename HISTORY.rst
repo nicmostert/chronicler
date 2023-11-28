@@ -37,3 +37,8 @@ History
 ------------------
 
 * Fixed a bug with argument handling
+
+0.3.5 (2023-11-29)
+------------------
+
+* Added basic string sanitation and truncating of long values in default message fields.
