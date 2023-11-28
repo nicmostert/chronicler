@@ -118,7 +118,7 @@ class Wrapper:
 
     def __call_method__(self, instance, *args, **kwargs):
         """Call from LoggingDecorator.__call_method__."""
-        logger.debug("CALLING METHOD.")
+        logger.debug("CALLING called with.")
         return self.func.__get__(instance)(*args, **kwargs)
 
     def __get_property__(self, instance, *args, **kwargs):
@@ -227,7 +227,9 @@ class ClassLogger(Wrapper):
             f"with args {args}, and kwargs {kwargs}"
         )
         ret_val = super().__call__(*args, **kwargs)
-        logger.info(f"FUNCTION {self.func} takes args {args} and {kwargs}")
+        logger.info(
+            f"FUNCTION {self.func} called with args {args} and {kwargs}"
+        )
         logger.info(f"FUNCTION {self.func} RETURNS {ret_val}")
         return ret_val
 
@@ -243,12 +245,12 @@ class ClassLogger(Wrapper):
             f"args {args}, and kwargs {kwargs}"
         )
         ret_val = super().__call_method__(instance, *args, **kwargs)
-        logger.info(f"METHOD {self.func} takes args {args} and {kwargs}")
+        logger.info(f"METHOD {self.func} called with args {args} and {kwargs}")
         logger.info(f"METHOD {self.func} is on {instance}")
         logger.info(f"METHOD {self.func} RETURNS {ret_val}")
 
         message = (
-            f"METHOD {self.func.__qualname__} takes "
+            f"METHOD {self.func.__qualname__} called with "
             + f"args {args} and kwargs {kwargs}. "
             + f"It is on an instance of {instance.__class__.__name__}, "
             + f"and returns the value {ret_val}."
@@ -330,8 +332,11 @@ class ClassLogger(Wrapper):
 
     @staticmethod
     def _inspect_instance(func, instance, args, kwargs, setter_value={}):
-        arg_values = list(args) + list(kwargs.values())
+        logger.debug(f"RAW ARGS: {args}")
+        logger.debug(f"RAW KWARGS: {kwargs}")
+        # arg_values = list(args) + list(kwargs.values())
         argspec = inspect.getfullargspec(func)
+        logger.debug(f"argspec: {argspec}")
 
         if (len(argspec.args) > 0) and (argspec.args[0] == "self"):
             func_args = argspec.args[1:]
@@ -340,8 +345,15 @@ class ClassLogger(Wrapper):
 
         fill_data = {}
 
+        arg_values = {}
+
+        for key, val in zip(func_args[: len(args)], args):
+            arg_values[key] = val
+
+        arg_values.update(kwargs)
+
         if len(setter_value) != 0:
-            arg_values += [list(setter_value.values())[0]]
+            arg_values.update(setter_value)
             if list(setter_value.keys())[0] in ann.all_attributes:
                 fill_data = setter_value
 
@@ -358,7 +370,18 @@ class ClassLogger(Wrapper):
                 pass
             elif attr in func_args:
                 logger.info(f"Found {attr} in method args.")
-                fill_data[attr] = arg_values[func_args.index(attr)]
+                if attr in arg_values.keys():
+                    fill_data[attr] = arg_values[attr]
+                elif hasattr(instance, attr):
+                    logger.info(
+                        "But no arg supplied."
+                        f"Found {attr} in class attributes."
+                    )
+                    fill_data[attr] = getattr(instance, attr)
+                else:
+                    logger.info(
+                        "Arg not supplied, and not in class attributes"
+                    )
             elif hasattr(instance, attr):
                 logger.info(f"Found {attr} in class attributes.")
                 fill_data[attr] = getattr(instance, attr)

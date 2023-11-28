@@ -325,14 +325,14 @@ def test_message_logging(capsys):
     test_output = captured.err.split("\n")
     correct_out = [
         "test_message_logging | __init__ | METHOD Craig.__init__ "
-        + "takes args () and kwargs {'surname': 'Beaven', "
+        + "called with args () and kwargs {'surname': 'Beaven', "
         + "'height': 5.5, 'shoesize': 9, 'injured': True, "
         + "'bearded': True}. It is on an instance of "
         + "Craig, and returns the value None.",
         "test_message_logging | surname | PROPERTY Craig.surname "
         + "SET TO Pilkington. It is on an instance of Craig.",
         "test_message_logging | is_hurt_and_bearded | METHOD "
-        + "Craig.is_hurt_and_bearded takes args () and kwargs {}. "
+        + "Craig.is_hurt_and_bearded called with args () and kwargs {}. "
         + "It is on an instance of Craig, and returns the value True.",
     ]
 
@@ -371,6 +371,40 @@ def test_class_attribute_logging(capsys):
         "test_extra_info_logging | __init__ | 5.5 | True | False",
         "test_extra_info_logging | height | 7.5 | True | False",
         "test_extra_info_logging | grow_craig | 7.5 | True | False",
+    ]
+    assert test_output[0] == correct_out[0]
+    assert test_output[1] == correct_out[1]
+    assert test_output[2] == correct_out[2]
+
+
+def test_attribute_override_edgecase(capsys):
+    """Test logging of extra info fields."""
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(height)s"
+
+    ann.configure(
+        analyst_name="test_attribute_override_edgecase",
+        stream_format_str=format_str,
+    )
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=False,
+    )
+
+    cb.measure_the_craig()
+    cb.measure_the_craig(7.2)
+
+    captured = capsys.readouterr()
+    test_output = captured.err.split("\n")
+    correct_out = [
+        "test_attribute_override_edgecase | __init__ | 5.5",
+        "test_attribute_override_edgecase | measure_the_craig | 5.5",
+        "test_attribute_override_edgecase | measure_the_craig | 7.2",
     ]
     assert test_output[0] == correct_out[0]
     assert test_output[1] == correct_out[1]

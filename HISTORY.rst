@@ -32,3 +32,8 @@ History
 * I'm not sure what happened to 0.3.1 and 0.3.2
 * Now REALLLY able to support Hilltop audit trail parity.
 * Improved support for class method logging
+
+0.3.4 (2023-11-28)
+------------------
+
+* Fixed a bug with argument handling

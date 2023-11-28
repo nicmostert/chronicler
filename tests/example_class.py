@@ -87,6 +87,15 @@ class Craig:
         """Return true if Craig is both injured and bearded."""
         return self.injured and self.bearded
 
+    # This one has an input arg with the same name as a class attr.
+    @ClassLogger
+    def measure_the_craig(self, height: float | None = None) -> float:
+        """Return true if Craig is both injured and bearded."""
+        if height is None:
+            return self.height
+        else:
+            return height
+
     @ClassLogger
     @staticmethod
     def what_is_a_craig():

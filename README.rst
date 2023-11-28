@@ -46,7 +46,7 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
     class ExampleClass():
 
         # Initializers can be annalized just fine
-        @ClassLogger
+        @ClassLogger  # type: ignore
         __init__(self, arg1, arg2):
             self.arg1 = arg1
             self._arg2 = arg2
@@ -60,7 +60,7 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
 
         # Putting an annalizer on a setter is fine though.
         # Just make sure you put it after the setter decorator.
-        @ClassLogger
+        @ClassLogger  # type: ignore
         @arg2.setter
         def arg2(self, value):
             self._arg2 = value
@@ -70,6 +70,9 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
         def __repr__(self):
             return f"{str(arg1)}: {str(arg2)}"
 
+    .. note:: MyPy issues
+
+    Note the `# type: ignore` inline comments. These are only necessary when using `mypy`, which doesn't really seem to like decorators. They need to be supplied when decorating an `__init__` constructor method, or when adding multiple decorators to a method.
 
 In the main script, the Annalist object must be called again. This will point to the singleton object initialized in the dependency. The annalist must be configured before usage.
 
@@ -176,7 +179,7 @@ Unfortunately, Annalist does not yet offer support of passing these fields into 
     from annalist.decorators import ClassLogger
 
     class MyClass:
-        @ClassLogger
+        @ClassLogger  # type: ignore
         def __init__(attr, prop):
             self.attr = attr
             self._prop = prop
@@ -185,7 +188,7 @@ Unfortunately, Annalist does not yet offer support of passing these fields into 
         def prop(self):
             return prop
 
-        @ClassLogger
+        @ClassLogger  # type: ignore
         @prop.setter
         def prop(self, value):
             self._prop = value
@@ -198,7 +201,7 @@ Unfortunately, Annalist does not yet offer support of passing these fields into 
         def add_prop_to_attr(self):
             return attr + prop
 
-        @ClassLogger
+        @ClassLogger  # type: ignore
         @staticmethod
         def increment_value(attr):
             return attr += 1
