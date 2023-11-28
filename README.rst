@@ -70,11 +70,11 @@ Annalist also works on class methods, with the help of the ``ClassLogger`` decor
         def __repr__(self):
             return f"{str(arg1)}: {str(arg2)}"
 
+In the main script, the Annalist object must be called again. This will point to the singleton object initialized in the dependency. The annalist must be configured before usage.
+
     .. note:: MyPy issues
 
     Note the `# type: ignore` inline comments. These are only necessary when using `mypy`, which doesn't really seem to like decorators. They need to be supplied when decorating an `__init__` constructor method, or when adding multiple decorators to a method.
-
-In the main script, the Annalist object must be called again. This will point to the singleton object initialized in the dependency. The annalist must be configured before usage.
 
 >>> ann = Annalist()
 >>> ann.configure(logger_name="Example Logger", analyst_name="Speve")
