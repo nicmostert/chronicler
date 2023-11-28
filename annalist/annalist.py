@@ -363,6 +363,7 @@ def clean_str(s):
         ord("\f"): " ",
         ord("\r"): None,
         ord(","): ";",
+        ord("\n"): None,
     }
     s = str(s).translate(process)
     return s

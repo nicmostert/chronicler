@@ -42,3 +42,8 @@ History
 ------------------
 
 * Added basic string sanitation and truncating of long values in default message fields.
+
+0.3.6 (2023-11-29)
+------------------
+
+* Now also sanitizing newline characters.
