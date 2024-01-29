@@ -1,4 +1,5 @@
 """Example of a class to be Annalized."""
+
 # from annalist.annalist import Annalist, MethodDecorator
 from annalist.annalist import Annalist
 from annalist.decorators import ClassLogger, function_logger
