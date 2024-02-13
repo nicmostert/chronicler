@@ -47,3 +47,9 @@ History
 ------------------
 
 * Now also sanitizing newline characters.
+
+0.4.0 (2024-02-13)
+------------------
+
+* Moved to pyproject.toml package.
+* Fixed bug relating to method identity crisis (decorated functions thought they were their decorators).

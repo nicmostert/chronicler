@@ -141,7 +141,7 @@ Releaseing to PyPI
 
 A reminder for the maintainers on how to deploy.
 
-1. Make sure all your changes are committed (including an antry in HISTORY.rst, documentation, etc.)
+1. Make sure all your changes are committed (including an entry in HISTORY.rst, documentation, etc.)
 
 2. Then run `bump-my-version` to increment the release tags in the appropriate places. Consider using the `--dry-run` flag to make sure there are no erros::
 
