@@ -498,9 +498,9 @@ def test_redecoration(capsys):
 
     # Redecorating a decorated function
 
-    function_logger(
-        inspect.unwrap(return_greeting), message="Redecorated message"
-    )("Speve")
+    function_logger(inspect.unwrap(return_greeting), message="Redecorated message")(
+        "Speve"
+    )
 
     correct_out = [
         "test_redecoration | which_craig_is_that | "
@@ -519,7 +519,7 @@ def test_redecoration(capsys):
 def test_long_and_dirty(capsys):
     """Test long and dirty log values.
 
-    Long values (i.e. default method messages should be truncated
+    Long values (i.e. default method messages should be truncated)
     """
     ann = Annalist()
 
@@ -564,3 +564,57 @@ def test_long_and_dirty(capsys):
     test_output = captured.err.split("\n")
 
     assert test_output[-2] == correct_out
+
+
+def test_identity_dissociation():
+    """Make sure wrapped functions and methods still know who they are."""
+    ann = Annalist()
+
+    format_str = "%(analyst_name)s | %(function_name)s | %(message)s"
+
+    ann.configure(
+        analyst_name="test_long_and_dirty",
+        stream_format_str=format_str,
+    )
+
+    assert which_craig_is_that.__name__ == "which_craig_is_that"
+    assert which_craig_is_that.__doc__ == "Which craig based on seat."
+    assert which_craig_is_that.__module__ == "tests.example_class"
+
+    assert return_greeting.__name__ == "return_greeting"
+    assert return_greeting.__doc__ == "Return a friendly greeting."
+    assert return_greeting.__module__ == "tests.example_class"
+
+    cb = Craig(
+        surname="Beaven",
+        height=5.5,
+        shoesize=9,
+        injured=True,
+        bearded=True,
+    )
+
+    assert cb.grow_craig.__name__ == "grow_craig"
+    assert cb.grow_craig.__doc__ == "Grow your craig by specified amount of feet."
+    assert cb.grow_craig.__module__ == "tests.example_class"
+
+    assert cb.is_hurt_and_bearded.__name__ == "is_hurt_and_bearded"
+    assert (
+        cb.is_hurt_and_bearded.__doc__
+        == "Return true if Craig is both injured and bearded."
+    )
+    assert cb.is_hurt_and_bearded.__module__ == "tests.example_class"
+
+    assert cb.measure_the_craig.__name__ == "measure_the_craig"
+    assert (
+        cb.measure_the_craig.__doc__
+        == "Find out how tall your craig is, but you can also choose!"
+    )
+    assert cb.measure_the_craig.__module__ == "tests.example_class"
+
+    assert cb.what_is_a_craig.__name__ == "what_is_a_craig"
+    assert cb.what_is_a_craig.__doc__ == "Explain a craig."
+    assert cb.what_is_a_craig.__module__ == "tests.example_class"
+
+    assert cb.army_of_craigs.__name__ == "army_of_craigs"
+    assert cb.army_of_craigs.__doc__ == "Make an army of tall, healthy, shaven craigs."
+    assert cb.army_of_craigs.__module__ == "tests.example_class"

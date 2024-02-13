@@ -26,7 +26,7 @@ def which_craig_is_that(sits: str = "left") -> str:
 class Craig:
     """A standard issue Craig."""
 
-    @ClassLogger  # type: ignore
+    # @ClassLogger  # type: ignore
     def __init__(
         self,
         surname: str,
@@ -47,33 +47,33 @@ class Craig:
         }
 
     @property
-    def surname(self):
+    def surname(self):  # type: ignore
         """The surname property."""
         return self._surname
 
-    @ClassLogger  # type: ignore
+    @ClassLogger
     @surname.setter
     def surname(self, value: str):
         """Set the surname of a Craig."""
         self._surname = value
 
     @property
-    def shoesize(self):
+    def shoesize(self):  # type: ignore
         """The shoesize property."""
         return self._shoesize
 
-    @ClassLogger  # type: ignore
+    @ClassLogger
     @shoesize.setter
     def shoesize(self, value: int):
         """Set the shoesize of your Craig."""
         self._shoesize = value
 
     @property
-    def height(self):
+    def height(self):  # type: ignore
         """The height property."""
         return self._height
 
-    @ClassLogger  # type: ignore
+    @ClassLogger
     @height.setter
     def height(self, value):
         self._height = value
@@ -91,7 +91,7 @@ class Craig:
     # This one has an input arg with the same name as a class attr.
     @ClassLogger
     def measure_the_craig(self, height: float | None = None) -> float:
-        """Find out how tall your craig is, but you can also choose."""
+        """Return true if Craig is both injured and bearded."""
         if height is None:
             return self.height
         else:
@@ -126,3 +126,64 @@ class Craig:
     #         f"Craig {self.surname} is {self.height} ft tall and wears "
     #         f"size {self.shoesize} shoes."
     #     )
+
+
+if __name__ == "__main__":
+    format_str = (
+        "%(levelname)s | %(function_name)s | %(message)s " "| %(injured)s | %(height)s"
+    )
+    ann.configure(
+        analyst_name="Nic baby",
+        stream_format_str=format_str,
+        default_level="INFO",
+        level_filter="INFO",
+    )
+    cb = Craig("Beaven", 5.5, 9, True, True)
+
+    # print(return_greeting("Craig"))
+    #
+    # function_logger(
+    #     which_craig_is_that,
+    #     message="Post-logging an undecorated function here.",
+    #     extra_info={"injured": "YEAH (in a lil jon voice)."},
+    # )("Craig")
+    #
+    # print(function_logger(
+    #     inspect.unwrap(return_greeting),
+    #     message="Redecorating a decorated function",
+    #     extra_info={"injured": "OKAAAY (in a lil jon voice)."},
+    # )("Speve"))
+    # print(cb.height)
+    #
+    print(cb.surname)
+    #
+    cb.surname = "Coulomb"
+    # cb.shoesize = 11
+    # print(cb.is_hurt_and_bearded())
+    # print("=====================")
+    # print(cb.is_hurt_and_bearded.__name__)
+    # print(cb.is_hurt_and_bearded.__doc__)
+    #
+    # print("===================================================A")
+    # print(cb.height)
+    # print("===================================================B")
+    # cb.grow_craig(1.5)
+    # print("===================================================B")
+    # print(cb.height)
+    # print("===================================================A")
+    # army_surnames = [
+    #     "Hawthorne",
+    #     "Sandusky",
+    #     "Gilgamesh",
+    #     "Harriet",
+    #     "Pilkington",
+    #     "Reid",
+    #     "Kannemeyer",
+    # ]
+    #
+    # army = cb.army_of_craigs(army_surnames)
+    # print(army)
+    #
+    # print("===================================================C")
+    # print(cb.army_of_craigs)
+    # print(inspect.unwrap(cb.army_of_craigs))

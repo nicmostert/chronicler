@@ -27,6 +27,7 @@ def function_logger(
     Annalist logging functionality to a function.
 
     Examples
+    --------
     ________
     When applied where the function is declared, this function serves as a
     decorator::
@@ -86,9 +87,7 @@ def function_logger(
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
-            ann.log_call(
-                message, level, func, result, extra_info, *args, **kwargs
-            )
+            ann.log_call(message, level, func, result, extra_info, *args, **kwargs)
             return result
 
         return wrapper
@@ -108,6 +107,7 @@ class Wrapper:
 
         Also puts the called function on the namespace.
         """
+        _ = message
         super().__init__()
         self.func = func
 
@@ -118,34 +118,43 @@ class Wrapper:
 
     def __call_method__(self, instance, *args, **kwargs):
         """Call from LoggingDecorator.__call_method__."""
-        logger.debug("CALLING called with.")
+        logger.debug("+++++++++++++++++++++++++++++THIS IS THE SUPER CALL_METHOD")
         return self.func.__get__(instance)(*args, **kwargs)
 
     def __get_property__(self, instance, *args, **kwargs):
-        """Call from LoggingDecorator.__get_property__."""
-        logger.debug("GETTING PROPERTY.")
+        """Made to be overridden."""
         return self.func.__get__(instance)(*args, **kwargs)
 
     def __set_property__(self, instance, *args, **kwargs):
-        """Call from LoggingDecorator.__set_property__."""
-        logger.debug("SETTING PROPERTY.")
+        """Made to be overridden."""
         return self.func.__set__(instance)(*args, **kwargs)
 
-    def __get__(self, instance, _):
+    def __call_property__(self, instance, *args, **kwargs):
+        """Made to be overridden."""
+        return self.func.__call_property__(instance)(*args, **kwargs)
+
+    def __get__(self, instance, args):
         """Triggers when instance.method() is called."""
+        _ = args
         logger.debug(f"GETTER CALLED on {self.func}")
         logger.debug(f"is it a property? {isinstance(self.func, property)}")
         if isinstance(self.func, property):
-            return self.__get_property__(instance)
+            call_ret = self.__get_property__(instance)
+            return call_ret
         else:
-            return partial(self.__call_method__, instance)
+            call_ret = partial(self.__call_method__, instance)
+            functools.update_wrapper(call_ret, self.func)
+            return call_ret
 
     def __set__(self, instance, anything):
         """Triggers when setter is called."""
         logger.debug(f"SETTER CALLED on {self.func} with value {anything}")
         if isinstance(self.func, property):
-            return self.__set_property__(instance, anything)
-        return partial(self.__call_property__, instance)
+            call_ret = self.__set_property__(instance, anything)
+            return call_ret
+        call_ret = partial(self.__call_property__, instance)
+        functools.update_wrapper(call_ret, self.func)
+        return call_ret
 
 
 class ClassLogger(Wrapper):
@@ -228,9 +237,7 @@ class ClassLogger(Wrapper):
         )
         ret_val = super().__call__(*args, **kwargs)
         ret_val_str = trunc_value_string(ret_val)
-        logger.info(
-            f"FUNCTION {self.func} called with args {args} and {kwargs}"
-        )
+        logger.info(f"FUNCTION {self.func} called with args {args} and {kwargs}")
         logger.info(f"FUNCTION {self.func} RETURNS {ret_val_str}")
         return ret_val
 
@@ -249,7 +256,6 @@ class ClassLogger(Wrapper):
         logger.info(f"METHOD {self.func} called with args {args} and {kwargs}")
         logger.info(f"METHOD {self.func} is on {instance}")
         logger.info(f"METHOD {self.func} RETURNS {ret_val}")
-
         ret_val_str = trunc_value_string(ret_val)
         message = (
             f"METHOD {self.func.__qualname__} called with "
@@ -263,7 +269,6 @@ class ClassLogger(Wrapper):
         else:
             ret_func = self.func
 
-        logger.debug(self.func)
         # I'm unwrapping here in case the func is a
         # classmethod (which is a wrapper).
         fill_data = self._inspect_instance(ret_func, instance, args, kwargs)
@@ -280,11 +285,13 @@ class ClassLogger(Wrapper):
         logger.debug("DONE LOGGING METHOD")
         return ret_val
 
-    def __get_property__(self, instance):
+    def __get_property__(self, instance, *args, **kwargs):
         """Triggers when a property is called (through __get__).
 
         Logs, then sends to Wrapper.__call_property__
         """
+        _ = args
+        _ = kwargs
         logger.debug("PROPERTY seen, let's get it.")
         logger.debug(
             f"You decorated a property called {self.func.fget} "
@@ -304,9 +311,7 @@ class ClassLogger(Wrapper):
             f"You decorated a property called {self.func.fset} "
             f"on instance {instance}, "
         )
-        logger.debug("Constructing Message")
-
-        logger.debug("inspecting instance")
+        logger.debug("Inspecting Instance:")
         fill_data = self._inspect_instance(
             self.func.fset,
             instance,
@@ -314,6 +319,7 @@ class ClassLogger(Wrapper):
             {},
             setter_value={self.func.fset.__name__: value},
         )
+
         val_str = trunc_value_string(value)
 
         message = (
@@ -335,7 +341,9 @@ class ClassLogger(Wrapper):
         return self.func.fset(instance, value)
 
     @staticmethod
-    def _inspect_instance(func, instance, args, kwargs, setter_value={}):
+    def _inspect_instance(func, instance, args, kwargs, setter_value=None):
+        if setter_value is None:
+            setter_value = {}
         logger.debug(f"RAW ARGS: {args}")
         logger.debug(f"RAW KWARGS: {kwargs}")
         # arg_values = list(args) + list(kwargs.values())
@@ -370,6 +378,7 @@ class ClassLogger(Wrapper):
         #     if func.__name__ in ann.all_attributes:
 
         for attr in ann.all_attributes:
+            logger.debug(f"Searcing for {attr}")
             if attr in fill_data:
                 pass
             elif attr in func_args:
@@ -378,18 +387,16 @@ class ClassLogger(Wrapper):
                     fill_data[attr] = arg_values[attr]
                 elif hasattr(instance, attr):
                     logger.info(
-                        "But no arg supplied."
-                        f"Found {attr} in class attributes."
+                        "But no arg supplied." f"Found {attr} in class attributes."
                     )
                     fill_data[attr] = getattr(instance, attr)
                 else:
-                    logger.info(
-                        "Arg not supplied, and not in class attributes"
-                    )
+                    logger.info("Arg not supplied, and not in class attributes")
             elif hasattr(instance, attr):
                 logger.info(f"Found {attr} in class attributes.")
                 fill_data[attr] = getattr(instance, attr)
-        logger.info(f"fill_data = {fill_data}")
+
+        logger.debug(f"fill_data = {fill_data}")
 
         return fill_data
 
@@ -401,9 +408,7 @@ def trunc_value_string(value):
         val_type = type(value)
         if hasattr(value, "__len__"):
             val_len = len(value)
-            val_str = (
-                val_str[:20] + f" ... [{val_type} " + f"of len {val_len}]"
-            )
+            val_str = val_str[:20] + f" ... [{val_type} " + f"of len {val_len}]"
         else:
             val_str = val_str[:20] + f" ... [long {val_type} (trunc)]"
     return val_str

@@ -44,7 +44,7 @@ class AnnalistLogger(logging.Logger):
         """Add user-defined fields as attributes."""
         self.extra_attributes += extra_attributes
 
-    def makeRecord(self, *args, **kwargs):
+    def makeRecord(self, *args, **kwargs):  # type: ignore
         """Override Logger.makeRecord to accept user-defined fields."""
         rv = super().makeRecord(*args, **kwargs)
         for attr in self.extra_attributes:
@@ -135,9 +135,7 @@ class Annalist(metaclass=Singleton):
         )
         # Set up formatters
         if file_format_str:
-            self.file_formatter = logging.Formatter(
-                file_format_str, self.date_format
-            )
+            self.file_formatter = logging.Formatter(file_format_str, self.date_format)
         else:
             self.file_formatter = default_formatter
         if stream_format_str:
@@ -256,15 +254,11 @@ class Annalist(metaclass=Singleton):
         """
         return re.findall(r"%\((.*?)\)", format_string)
 
-    def set_file_formatter(
-        self, formatter, logfile: str | PathLike[str] | None = None
-    ):
+    def set_file_formatter(self, formatter, logfile: str | PathLike[str] | None = None):
         """Change the file formatter of the logger."""
         if self.logfile is None:
             if logfile is None:
-                raise ValueError(
-                    "Cannot set up file formatter, no log file specified."
-                )
+                raise ValueError("Cannot set up file formatter, no log file specified.")
             else:
                 self.logfile = logfile
             self.file_handler = logging.FileHandler(self.logfile)
@@ -288,9 +282,7 @@ class Annalist(metaclass=Singleton):
         self.stream_handler.setFormatter(self.stream_formatter)
         self.logger.addHandler(self.stream_handler)
 
-    def log_call(
-        self, message, level, func, ret_val, extra_data, *args, **kwargs
-    ):
+    def log_call(self, message, level, func, ret_val, extra_data, *args, **kwargs):
         """Log function call."""
         if not self._configured:
             raise ValueError(
