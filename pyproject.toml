@@ -59,7 +59,7 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["hydrobot"]
+source = ["annalist"]
 
 
 [tool.ruff]
