@@ -84,12 +84,11 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	python -m pip install -e .[all]
 
 pre-commit: ## run pre-commit locally as it would run on pre-commit.ci
 	pre-commit run --all-files
