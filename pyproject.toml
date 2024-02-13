@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "annalist"
+name = "data-annalist"
 description = "Audit trail generator for data processing scripts."
 version = "0.4.0"
 authors = [
@@ -46,7 +46,7 @@ docs = [
     "furo>=2023.9.10",
 ]
 all = [
-    "annalist[test, dev, docs]"
+    "data-annalist[test, dev, docs]"
 ]
 
 [tool.setuptools]

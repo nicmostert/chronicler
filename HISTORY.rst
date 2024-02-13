@@ -53,3 +53,9 @@ History
 
 * Moved to pyproject.toml package.
 * Fixed bug relating to method identity crisis (decorated functions thought they were their decorators).
+
+0.4.1 (2024-02-13)
+------------------
+
+* Fixed pyproject.toml package
+* Updated .readthedocs.yaml to reflect changes in pyproject.toml
