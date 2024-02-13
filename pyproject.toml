@@ -38,6 +38,7 @@ dev = [
     "ruff-lsp>=0.0.45",
     "pre-commit>=3.5.0",
     "build>1.0.0",
+    "bump-my-version>=0.17.4",
 ]
 docs = [
     "Sphinx>=7.2.6",
