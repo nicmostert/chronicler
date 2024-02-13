@@ -12,7 +12,9 @@ To install Annalist, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install annalist
+    $ pip install data-annalist
+
+.. note:: Make sure you install `data-annalist`. The PyPI package called `annalist` is something else.
 
 This is the preferred method to install Annalist, as it will always install the most recent stable release.
 
