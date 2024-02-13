@@ -607,7 +607,7 @@ def test_identity_dissociation():
     assert cb.measure_the_craig.__name__ == "measure_the_craig"
     assert (
         cb.measure_the_craig.__doc__
-        == "Find out how tall your craig is, but you can also choose!"
+        == "Find out how tall your craig is, but you can also choose."
     )
     assert cb.measure_the_craig.__module__ == "tests.example_class"
 

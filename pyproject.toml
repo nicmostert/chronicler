@@ -52,7 +52,7 @@ all = [
 packages = ["annalist"]
 
 [tool.pytest.ini_options]
-addopts = "--cov --col-fail-under 100 --strict-markers"
+addopts = "--cov --cov-fail-under 100 --strict-markers"
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "remote: depends on remote server calls (deselect with '-m \"not remove\"')",
