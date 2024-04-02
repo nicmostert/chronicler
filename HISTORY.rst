@@ -64,3 +64,8 @@ History
 ------------------
 
 * Relaxed Python dependency from 3.11.6 to 3.11
+
+0.4.3 (2024-04-02)
+------------------
+
+* Updated all uses of zip to be compliant to Ruff B905
