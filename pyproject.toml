@@ -9,7 +9,7 @@ version = "0.4.2"
 authors = [
     { name = "Nic Mostert", email = "nicolas.mostert@horizons.govt.nz" },
 ]
-requires-python = "==3.11"
+requires-python = "==3.11.*"
 dependencies = []
 classifiers=[
     "Development Status :: 2 - Pre-Alpha",

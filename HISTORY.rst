@@ -59,3 +59,8 @@ History
 
 * Fixed pyproject.toml package
 * Updated .readthedocs.yaml to reflect changes in pyproject.toml
+
+0.4.2 (2024-04-02)
+------------------
+
+* Relaxed Python dependency from 3.11.6 to 3.11
