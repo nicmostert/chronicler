@@ -302,7 +302,7 @@ class Annalist(metaclass=Singleton):
         params = {}
         all_args = list(args) + list(kwargs.values())
         for i, ((name, param), arg) in enumerate(
-            zip(signature.parameters.items(), all_args)
+            zip(signature.parameters.items(), all_args, strict=True)
         ):
             if param.default == inspect._empty:
                 default_val = None
