@@ -359,7 +359,7 @@ class ClassLogger(Wrapper):
 
         arg_values = {}
 
-        for key, val in zip(func_args[: len(args)], args, strict=True):
+        for key, val in zip(func_args[: len(args)], args):
             arg_values[key] = val
 
         arg_values.update(kwargs)

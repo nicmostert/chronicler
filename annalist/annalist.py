@@ -149,7 +149,7 @@ class Annalist(metaclass=Singleton):
 
         # Set up handlers
         if self.logfile:
-            self.file_handler = logging.FileHandler(self.logfile)
+            self.file_handler = logging.FileHandler(self.logfile, mode="w")
         self.stream_handler = logging.StreamHandler()  # Log to console
 
         default_attributes = [
@@ -302,7 +302,7 @@ class Annalist(metaclass=Singleton):
         params = {}
         all_args = list(args) + list(kwargs.values())
         for i, ((name, param), arg) in enumerate(
-            zip(signature.parameters.items(), all_args, strict=True)
+            zip(signature.parameters.items(), all_args)
         ):
             if param.default == inspect._empty:
                 default_val = None

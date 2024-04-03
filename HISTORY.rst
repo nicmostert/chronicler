@@ -68,4 +68,5 @@ History
 0.4.3 (2024-04-02)
 ------------------
 
-* Updated all uses of zip to be compliant to Ruff B905
+* Considered being Ruff B905 compliant, but it turns out we're zipping over some unequal lists. Shelving this for later.
+* Switched logfile mode from "append" to "write", which overwrites the logfile every time.
